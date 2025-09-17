@@ -24,7 +24,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://Aviral2642.github.io/portfolio-frontend",
+  "homepage": "https://www.aviralsrivastava.tech",
   "devDependencies": {
     "gh-pages": "^6.3.0"
   },
