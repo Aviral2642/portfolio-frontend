@@ -105,7 +105,7 @@ const Navigation = () => {
         duration: 0.8,
         stagger: 0.1,
         ease: 'power3.out',
-        delay: 3.8,
+        delay: sessionStorage.getItem('portfolio_loaded') ? 0.3 : 3.8,
       });
 
       // Scroll progress bar

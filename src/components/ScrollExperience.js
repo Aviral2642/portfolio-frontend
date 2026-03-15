@@ -4,7 +4,25 @@ import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useFrame, useThree } from '@react-three/fiber';
 import HackerRoom from './HackerRoom';
+
+/* ─── Render Controller: pause when tab is hidden ─── */
+function RenderController() {
+  const { gl } = useThree();
+  useEffect(() => {
+    const onVis = () => {
+      if (document.hidden) {
+        gl.setAnimationLoop(null);
+      } else {
+        gl.setAnimationLoop(() => {});
+      }
+    };
+    document.addEventListener('visibilitychange', onVis);
+    return () => document.removeEventListener('visibilitychange', onVis);
+  }, [gl]);
+  return null;
+}
 
 const AboutSection = lazy(() => import('./AboutSection'));
 const ExpertiseSection = lazy(() => import('./ExpertiseSection'));
@@ -160,12 +178,13 @@ const ScrollExperience = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Welcome text animation
+      // Welcome text animation - instant on return visits, delayed on first visit
+      const introDelay = sessionStorage.getItem('portfolio_loaded') ? 0.3 : 3.8;
       const welcomeTl = gsap.timeline();
       welcomeTl
-        .to(welcomeRef.current, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 3.8 })
-        .to(welcomeSubRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
-        .to(scrollHintRef.current, { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+        .to(welcomeRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: introDelay })
+        .to(welcomeSubRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+        .to(scrollHintRef.current, { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.2');
 
       // Main scroll trigger - uses callback ref, not setState
       ScrollTrigger.create({
@@ -199,12 +218,16 @@ const ScrollExperience = () => {
                   powerPreference: 'high-performance',
                   stencil: false,
                   depth: true,
+                  failIfMajorPerformanceCaveat: false,
+                  preserveDrawingBuffer: false,
                 });
                 gl.toneMapping = THREE.ACESFilmicToneMapping;
                 gl.toneMappingExposure = 1.6;
                 gl.shadowMap.enabled = true;
                 gl.shadowMap.type = THREE.BasicShadowMap;
                 gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+                // Safari optimization: disable logarithmic depth buffer
+                gl.logarithmicDepthBuffer = false;
                 return gl;
               }}
               dpr={[1, 1.5]}
@@ -212,6 +235,7 @@ const ScrollExperience = () => {
             >
               <Suspense fallback={null}>
                 <HackerRoom scrollProgressRef={scrollProgressRef} />
+                <RenderController />
               </Suspense>
             </Canvas>
           </CanvasWrap>
