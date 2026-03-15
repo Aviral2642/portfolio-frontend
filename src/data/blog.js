@@ -1,0 +1,74 @@
+export const blogPosts = [
+  {
+    id: 1,
+    title: 'AdversaryPilot + Garak: How to Turn LLM Scan Results into a Next-Step Attack Strategy',
+    url: 'https://medium.com/system-weakness/adversarypilot-garak-how-to-turn-llm-scan-results-into-a-next-step-attack-strategy-c7644ae7c89d',
+    publication: 'System Weakness',
+    tag: 'AI Red Team',
+  },
+  {
+    id: 2,
+    title: 'Schema Smuggling: Breaking AI Tool Calls with Parser Quirks',
+    url: 'https://medium.com/@aviral23/schema-smuggling-breaking-ai-tool-calls-with-parser-quirks-c61478dc1414',
+    publication: 'Medium',
+    tag: 'AI Security',
+  },
+  {
+    id: 3,
+    title: 'Batch Neighbor Exfiltration: Turning Shared Inference into a Keyword Oracle',
+    url: 'https://medium.com/@aviral23/batch-neighbor-exfiltration-moe-specdec-turning-shared-inference-into-a-keyword-oracle-272798a264f8',
+    publication: 'Medium',
+    tag: 'AI Security',
+  },
+  {
+    id: 4,
+    title: 'RAG at the Geometry Layer: Embedding Collision Poisoning',
+    url: 'https://medium.com/@aviral23/rag-at-the-geometry-layer-embedding-collision-poisoning-and-how-to-measure-your-exposure-3a720f99aebc',
+    publication: 'Medium',
+    tag: 'AI Security',
+  },
+  {
+    id: 5,
+    title: "AI Attack Mind Map: An Operator's Field Manual",
+    url: 'https://medium.com/system-weakness/ai-attack-mind-map-an-operators-field-manual-bcde6bed9529',
+    publication: 'System Weakness',
+    tag: 'AI Red Team',
+  },
+  {
+    id: 6,
+    title: 'Heap-Based Buffer Overflow Attacks: The Stealthy Threat to Your Systems Security',
+    url: 'https://medium.com/@aviral23/heap-based-buffer-overflow-attacks-the-stealthy-threat-to-your-systems-security-423e36429865',
+    publication: 'Medium',
+    tag: 'Exploitation',
+  },
+  {
+    id: 7,
+    title: 'Exploit Development: The Most Important Skill a Hacker Can Learn',
+    url: 'https://medium.com/@aviral23/exploit-development-the-most-important-skill-a-hacker-can-learn-e9515f61a7f7',
+    publication: 'Medium',
+    tag: 'Offensive Security',
+  },
+  {
+    id: 8,
+    title: 'AI-Powered Malware Will Be the New Reality',
+    url: 'https://medium.com/@aviral23/ai-powered-malware-will-be-the-new-reality-da33303f6750',
+    publication: 'Medium',
+    tag: 'AI Security',
+  },
+  {
+    id: 9,
+    title: 'Can AI Hack Us or Is It Just Science Fiction?',
+    url: 'https://medium.com/@aviral23/can-ai-hack-us-or-is-it-just-science-fiction-malicious-side-of-artificial-intelligence-b676aefbfb5f',
+    publication: 'Medium',
+    tag: 'AI Security',
+  },
+  {
+    id: 10,
+    title: 'What Is Neural Cryptography? Can It Change the Way We Evolve Data Security?',
+    url: 'https://medium.com/@aviral23/what-is-neural-cryptography-can-it-change-the-way-we-evolve-data-security-db4a0aa74a4a',
+    publication: 'Medium',
+    tag: 'Cryptography',
+  },
+];
+
+export const MEDIUM_PROFILE = 'https://medium.com/@aviral23';

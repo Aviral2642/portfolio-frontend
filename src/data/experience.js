@@ -7,12 +7,12 @@ export const experience = [
     startDate: '2025-01-01',
     endDate: null,
     current: true,
-    description: 'Red Team Automation, Application security, Secure Coding',
+    description: 'Red Team Automation, Application Security, Secure Coding',
     responsibilities: [
-      'Developed automated red team tools for internal security assessments',
-      'Implemented secure coding practices across multiple development teams',
-      'Conducted application security reviews and penetration testing',
-      'Built security automation tools using Python and cloud services'
+      'Developing automated red team tools for internal security assessments',
+      'Implementing secure coding practices across multiple development teams',
+      'Conducting application security reviews and penetration testing',
+      'Building security automation tools using Python and cloud services'
     ],
     technologies: ['Python', 'AWS', 'Docker', 'Kubernetes', 'Security Tools'],
     logo: '🛒'
@@ -20,7 +20,7 @@ export const experience = [
   {
     id: 2,
     company: 'Penn State University',
-    position: 'Teaching Assistant - Red Teaming',
+    position: 'Teaching Assistant — Red Teaming & CTFs',
     location: 'State College, PA',
     startDate: '2023-09-01',
     endDate: '2024-12-31',
@@ -32,7 +32,7 @@ export const experience = [
       'Mentored students in cybersecurity research projects',
       'Created educational content for offensive security courses'
     ],
-    technologies: ['Red Team Tools', 'CTF Platforms', 'Educational Content'],
+    technologies: ['Red Team Tools', 'CTF Platforms', 'Kali Linux', 'Burp Suite'],
     logo: '🎓'
   },
   {

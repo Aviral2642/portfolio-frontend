@@ -1,260 +1,397 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { useInView } from 'react-intersection-observer';
-import { useAnimation } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { research, TOTAL_PAPERS } from '../data/research';
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ────────────────────────────── styled-components ─────────────────────────── */
 
 const Section = styled.section`
-  padding: var(--section-padding);
-  background: var(--bg-secondary);
   position: relative;
+  background: var(--bg-dark);
+  padding: 120px 20px 140px;
   overflow: hidden;
+
+  /* subtle radial gradient behind the cards */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+      circle,
+      rgba(118, 75, 162, 0.08) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 20px;
+  position: relative;
+  z-index: 1;
 `;
 
-const SectionTitle = styled(motion.h2)`
+const SectionTitle = styled.h2`
   font-family: var(--font-display);
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 900;
+  letter-spacing: 0.25em;
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 72px;
   position: relative;
-  background: var(--gradient-tertiary);
+  display: inline-block;
+  width: 100%;
+  color: transparent;
+  background: linear-gradient(135deg, var(--purple-light), var(--cyan-accent));
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
-  }
+  opacity: 0;
+  transform: translateY(40px);
 `;
 
-const TitleIcon = styled.span`
-  font-size: 2.5rem;
-  margin-right: 20px;
-  background: var(--gradient-tertiary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+const TitleUnderline = styled.span`
+  display: block;
+  margin: 16px auto 0;
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple-glow), var(--cyan-accent));
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
 `;
 
-const ResearchGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
-`;
-
-const ResearchCard = styled(motion.div)`
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 30px;
-  transition: var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-  
-  &.featured {
-    border-color: var(--blue-primary);
-    box-shadow: var(--shadow-glow);
-  }
-  
-  &:hover {
-    transform: translateY(-5px);
-    border-color: var(--blue-primary);
-    box-shadow: var(--shadow-glow);
-  }
-`;
-
-const CardHeader = styled.div`
+const CardsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 32px;
+`;
+
+const Card = styled.div`
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid rgba(118, 75, 162, 0.18);
+  border-left: 4px solid var(--purple-glow);
+  border-radius: 12px;
+  padding: 32px 36px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(50px);
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(168, 85, 247, 0.35);
+    border-left-color: var(--purple-light);
+    box-shadow: 0 8px 40px rgba(168, 85, 247, 0.12),
+      0 0 0 1px rgba(168, 85, 247, 0.1);
+  }
+
+  @media (max-width: 600px) {
+    padding: 24px 20px;
+  }
+`;
+
+const CardTopRow = styled.div`
+  display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
 `;
 
-const Venue = styled.span`
-  background: var(--purple-primary);
-  color: var(--text-primary);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-`;
-
-const Status = styled.span`
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  
-  &.published {
-    background: var(--primary-green);
-    color: var(--text-primary);
-  }
-  
-  &.ongoing {
-    background: var(--primary-orange);
-    color: var(--text-primary);
-  }
-`;
-
-const ResearchTitle = styled.h3`
-  font-size: 1.3rem;
+const VenueBadge = styled.span`
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 700;
-  margin-bottom: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--purple-deep), var(--blue-accent));
   color: var(--text-primary);
 `;
 
-const ResearchDescription = styled.p`
+const YearBadge = styled.span`
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+`;
+
+const FeaturedBadge = styled.span`
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 999px;
+  color: var(--cyan-accent);
+  border: 1px solid var(--cyan-accent);
+  background: rgba(34, 211, 238, 0.08);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.2), 0 0 24px rgba(34, 211, 238, 0.08);
+  animation: featuredPulse 3s ease-in-out infinite;
+
+  @keyframes featuredPulse {
+    0%, 100% {
+      box-shadow: 0 0 12px rgba(34, 211, 238, 0.2), 0 0 24px rgba(34, 211, 238, 0.08);
+    }
+    50% {
+      box-shadow: 0 0 18px rgba(34, 211, 238, 0.35), 0 0 40px rgba(34, 211, 238, 0.15);
+    }
+  }
+`;
+
+const StatusBadge = styled.span`
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-left: auto;
+  color: ${(props) =>
+    props.$status === 'completed' || props.$status === 'submitted'
+      ? '#4ade80'
+      : '#fbbf24'};
+  border: 1px solid
+    ${(props) =>
+      props.$status === 'completed' || props.$status === 'submitted'
+        ? 'rgba(74, 222, 128, 0.3)'
+        : 'rgba(251, 191, 36, 0.3)'};
+  background: ${(props) =>
+    props.$status === 'completed' || props.$status === 'submitted'
+      ? 'rgba(74, 222, 128, 0.08)'
+      : 'rgba(251, 191, 36, 0.08)'};
+`;
+
+const CardTitle = styled.h3`
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+`;
+
+const Authors = styled.p`
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-style: italic;
+`;
+
+const Abstract = styled.p`
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.75;
   color: var(--text-secondary);
   margin-bottom: 20px;
-  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
-const CardFooter = styled.div`
+const CardLinks = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 `;
 
-const Authors = styled.span`
-  color: var(--text-muted);
-  font-size: 14px;
-`;
-
-const ReadMore = styled(motion.a)`
-  color: var(--blue-primary);
-  text-decoration: none;
+const LinkButton = styled.a`
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   font-weight: 600;
-  transition: var(--transition-fast);
-  
+  color: var(--purple-light);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(192, 132, 252, 0.2);
+  background: rgba(192, 132, 252, 0.06);
+  transition: all 0.25s ease;
+
   &:hover {
-    text-shadow: 0 0 5px var(--blue-primary);
+    background: rgba(192, 132, 252, 0.15);
+    border-color: var(--purple-glow);
+    color: var(--text-primary);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
   }
 `;
 
+/* ────────────────────────────── component ──────────────────────────────────── */
+
 const ResearchSection = () => {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false
-  });
-  
-  const controls = useAnimation();
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const underlineRef = useRef(null);
+  const cardsRef = useRef([]);
 
-  React.useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [controls, inView]);
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.2
-      }
-    }
+  // store card refs
+  const setCardRef = (el, i) => {
+    if (el) cardsRef.current[i] = el;
   };
 
-  const hoverVariants = {
-    scale: 1.05,
-    transition: { duration: 0.3 }
-  };
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      /* ── title reveal ───────────────────────────────────────────────── */
+      gsap.to(titleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      });
 
-  const tapVariants = {
-    scale: 0.95,
-    transition: { duration: 0.1 }
-  };
+      gsap.to(underlineRef.current, {
+        scaleX: 1,
+        duration: 0.7,
+        delay: 0.3,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      });
 
-  const research = [
-    {
-      id: 1,
-      title: 'The Fundamental Limits of LLM Unlearning',
-      description: 'Complexity-Theoretic Barriers and Provably Optimal Protocols',
-      venue: 'ICLR 2025',
-      status: 'published',
-      authors: 'Co-authored',
-      featured: true
-    },
-    {
-      id: 2,
-      title: 'Crypto CTF Generation using LLMs',
-      description: 'AI-powered challenge generation for security education',
-      venue: 'MS Thesis',
-      status: 'ongoing',
-      authors: 'Thesis Work'
-    },
-    {
-      id: 3,
-      title: 'D-POM Framework',
-      description: 'Dynamic Path Obfuscation & Monitoring for runtime anti-fuzzing systems',
-      venue: 'Research',
-      status: 'ongoing',
-      authors: 'Lead Researcher'
-    }
-  ];
+      /* ── card stagger reveal ────────────────────────────────────────── */
+      const cards = cardsRef.current.filter(Boolean);
+
+      cards.forEach((card, i) => {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          delay: i * 0.15,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+          },
+        });
+      });
+
+      /* ── subtle left-border highlight on scroll ─────────────────────── */
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { borderLeftColor: 'rgba(168, 85, 247, 0.4)' },
+          {
+            borderLeftColor: 'var(--purple-light)',
+            duration: 0.5,
+            ease: 'power1.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 75%',
+              end: 'bottom 25%',
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <Section id="research" ref={ref}>
+    <Section id="research" ref={sectionRef}>
       <Container>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={controls}
-        >
-          <SectionTitle>
-            <TitleIcon>🔬</TitleIcon>
-            Research Publications
-          </SectionTitle>
+        {/* ── Title ──────────────────────────────────────────────────────── */}
+        <SectionTitle ref={titleRef}>
+          RESEARCH
+          <TitleUnderline ref={underlineRef} />
+        </SectionTitle>
+        <p style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.85rem',
+          color: 'var(--text-muted)',
+          textAlign: 'center',
+          marginBottom: '40px',
+          marginTop: '-20px',
+        }}>
+          {TOTAL_PAPERS} peer-reviewed publications &bull; Showing selected highlights &bull;{' '}
+          <a href="https://scholar.google.com/citations?user=bwwumvAAAAAJ&hl=en"
+            target="_blank" rel="noopener noreferrer"
+            style={{ color: 'var(--purple-light)', textDecoration: 'underline' }}>
+            View all on Google Scholar
+          </a>
+        </p>
 
-          <ResearchGrid>
-            {research.map((item, index) => (
-              <ResearchCard
-                key={item.id}
-                className={item.featured ? 'featured' : ''}
-                variants={containerVariants}
-                whileHover={hoverVariants}
-                whileTap={tapVariants}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardHeader>
-                  <Venue>{item.venue}</Venue>
-                  <Status className={item.status}>{item.status}</Status>
-                </CardHeader>
-                
-                <ResearchTitle>{item.title}</ResearchTitle>
-                <ResearchDescription>{item.description}</ResearchDescription>
-                
-                <CardFooter>
-                  <Authors>{item.authors}</Authors>
-                  <ReadMore
-                    href="#"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+        {/* ── Cards ──────────────────────────────────────────────────────── */}
+        <CardsWrapper>
+          {research.map((item, index) => (
+            <Card key={item.id} ref={(el) => setCardRef(el, index)}>
+              <CardTopRow>
+                <VenueBadge>{item.venue}</VenueBadge>
+                <YearBadge>{item.year}</YearBadge>
+                {item.featured && <FeaturedBadge>Featured</FeaturedBadge>}
+                <StatusBadge $status={item.status}>
+                  {item.status === 'in-progress' ? 'In Progress' : item.status}
+                </StatusBadge>
+              </CardTopRow>
+
+              <CardTitle>{item.title}</CardTitle>
+
+              <Authors>
+                {Array.isArray(item.authors)
+                  ? item.authors.join(', ')
+                  : item.authors}
+              </Authors>
+
+              <Abstract>{item.abstract || item.description}</Abstract>
+
+              <CardLinks>
+                {item.pdfUrl && item.pdfUrl !== '#' && (
+                  <LinkButton
+                    href={item.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Read Paper ↗
-                  </ReadMore>
-                </CardFooter>
-              </ResearchCard>
-            ))}
-          </ResearchGrid>
-        </motion.div>
+                    PDF <span>&#8599;</span>
+                  </LinkButton>
+                )}
+                {item.githubUrl && item.githubUrl !== '#' && (
+                  <LinkButton
+                    href={item.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Code <span>&#8599;</span>
+                  </LinkButton>
+                )}
+                {/* Fallback: if both are placeholder '#', show a generic Read More */}
+                {((!item.pdfUrl || item.pdfUrl === '#') &&
+                  (!item.githubUrl || item.githubUrl === '#')) && (
+                  <LinkButton as="span" style={{ cursor: 'default', opacity: 0.5 }}>
+                    Coming Soon
+                  </LinkButton>
+                )}
+              </CardLinks>
+            </Card>
+          ))}
+        </CardsWrapper>
       </Container>
     </Section>
   );

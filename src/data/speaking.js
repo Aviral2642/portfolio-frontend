@@ -1,54 +1,86 @@
 export const speaking = [
   {
     id: 1,
-    title: 'Hacking Neural Networks: The Hidden Vulnerabilities of AI Systems',
-    conference: 'BSidesChicago 2024',
-    date: '2024-09-15',
-    location: 'Chicago, IL',
-    description: 'Exploring vulnerabilities in neural network architectures and training processes',
+    title: 'From Prompt to Pager: Preparing for AI-Native Incidents Now',
+    conference: 'RSAC 2026',
+    year: 2026,
+    location: 'San Francisco, CA',
     type: 'talk',
     featured: true,
-    slidesUrl: '#',
-    videoUrl: '#'
   },
   {
     id: 2,
-    title: 'Filling Gaps in AI Governance: How ISO/IEC 42001 Shapes the Future of AI Risk and Compliance',
-    conference: 'BSidesSLC 2025',
-    date: '2025-02-20',
-    location: 'Salt Lake City, UT',
-    description: 'Understanding AI governance frameworks and their impact on security practices',
+    title: 'Breaking the Loop: Offensive Testing of RL and Agentic AI Systems',
+    conference: 'ISACA North America 2026',
+    year: 2026,
+    location: 'North America',
     type: 'talk',
     featured: true,
-    slidesUrl: '#',
-    videoUrl: '#'
   },
   {
     id: 3,
-    title: 'Weaponizing AI: Adversarial Attacks, Hallucinations, and the Offensive Security Frontier',
-    conference: 'CactusCon 13 (2025)',
-    date: '2025-01-25',
-    location: 'Phoenix, AZ',
-    description: 'Advanced techniques for exploiting AI systems in offensive security operations',
-    type: 'workshop',
+    title: 'Agents Under Siege: Live Attacks from RAG to Tool Calls to Protocols',
+    conference: 'CactusCon 14',
+    year: 2025,
+    location: 'Mesa, AZ',
+    type: 'talk',
     featured: true,
-    slidesUrl: '#',
-    videoUrl: '#'
   },
   {
     id: 4,
-    title: 'Deceiving the Deceivers: Offensive Security Strategies for Adversarial AI Attacks',
-    conference: 'Cyphercon 2025',
-    date: '2025-03-10',
+    title: 'Deceiving the Deceivers: Offensive Security Strategies for Adversarial AI Attacks in Real-World Environments',
+    conference: 'CypherCon 2025',
+    year: 2025,
     location: 'Milwaukee, WI',
-    description: 'Counter-strategies for defending against AI-powered attacks',
+    type: 'talk',
+    featured: true,
+  },
+  {
+    id: 5,
+    title: 'Filling Gaps in AI Governance: How ISO/IEC 42001 Shapes the Future of AI Risk and Compliance',
+    conference: 'BSidesSLC 2025',
+    year: 2025,
+    location: 'Salt Lake City, UT',
     type: 'talk',
     featured: false,
-    slidesUrl: '#',
-    videoUrl: '#'
-  }
+  },
+  {
+    id: 6,
+    title: 'ROP Alchemy: Crafting Universal Gadgets for Arbitrary Code Execution via Type Confusion and Control Flow Bending',
+    conference: 'BSidesTC 2025',
+    year: 2025,
+    location: 'Twin Cities, MN',
+    type: 'talk',
+    featured: false,
+  },
+  {
+    id: 7,
+    title: 'Weaponizing AI: Adversarial Attacks, Hallucinations, and the Offensive Security Frontier',
+    conference: 'CactusCon 13',
+    year: 2025,
+    location: 'Mesa, AZ',
+    type: 'talk',
+    featured: false,
+  },
+  {
+    id: 8,
+    title: 'Hacking Neural Networks: The Hidden Vulnerabilities of AI Systems',
+    conference: 'BSidesChicago 2024',
+    year: 2024,
+    location: 'Chicago, IL',
+    type: 'talk',
+    featured: false,
+  },
+  {
+    id: 9,
+    title: 'Talk Title Under NDA',
+    conference: 'HOPE XV',
+    year: 2024,
+    location: 'New York, NY',
+    type: 'talk',
+    featured: false,
+  },
 ];
 
-export const getFeaturedSpeaking = () => speaking.filter(speak => speak.featured);
-export const getSpeakingByType = (type) => speaking.filter(speak => speak.type === type);
-export const getSpeakingById = (id) => speaking.find(speak => speak.id === id);
+export const TOTAL_TALKS = '9+';
+export const getFeaturedSpeaking = () => speaking.filter(s => s.featured);

@@ -11,16 +11,16 @@ export const skills = [
   {
     id: 2,
     title: 'AI x Cybersecurity',
-    level: 90,
-    description: 'Adversarial ML, secure LLMs, AI security research, and automated attacks',
+    level: 92,
+    description: 'Adversarial ML, secure LLMs, AI red teaming, and automated attacks',
     color: '#764ba2',
     category: 'ai',
     featured: true
   },
   {
     id: 3,
-    title: 'Red Teaming',
-    level: 92,
+    title: 'Red Teaming & Adversary Emulation',
+    level: 94,
     description: 'MITRE ATT&CK, APT simulation, and advanced persistent threat emulation',
     color: '#f093fb',
     category: 'cybersecurity',
@@ -28,24 +28,33 @@ export const skills = [
   },
   {
     id: 4,
-    title: 'Cryptography',
+    title: 'Symbolic Execution & Fuzzing',
     level: 88,
-    description: 'Cryptographic protocols, secure implementations, and crypto analysis',
-    color: '#51cf66',
+    description: 'Automated vulnerability discovery, protocol fuzzing, and runtime analysis',
+    color: '#22d3ee',
     category: 'cybersecurity',
     featured: true
   },
   {
     id: 5,
-    title: 'Cloud Security',
+    title: 'Cryptography & Secure Coding',
+    level: 90,
+    description: 'Cryptographic protocols, secure implementations, CTF automation, and crypto analysis',
+    color: '#51cf66',
+    category: 'cybersecurity',
+    featured: true
+  },
+  {
+    id: 6,
+    title: 'Cloud Security & DevSecOps',
     level: 85,
-    description: 'AWS security, DevSecOps, container security, and cloud governance',
+    description: 'AWS security, container security, cloud governance, risk & compliance (GRC)',
     color: '#ff6b6b',
     category: 'cloud',
     featured: true
   },
   {
-    id: 6,
+    id: 7,
     title: 'Malware Analysis',
     level: 90,
     description: 'Reverse engineering, static/dynamic analysis, and threat intelligence',
@@ -54,25 +63,25 @@ export const skills = [
     featured: false
   },
   {
-    id: 7,
+    id: 8,
     title: 'Python',
     level: 95,
-    description: 'Security tool development, automation, and scripting',
+    description: 'Security tool development, automation, ML pipelines, and scripting',
     color: '#3776ab',
     category: 'programming',
     featured: false
   },
   {
-    id: 8,
-    title: 'C/C++',
+    id: 9,
+    title: 'C/C++ & Low-Level',
     level: 85,
-    description: 'Low-level programming, kernel development, and system programming',
+    description: 'Kernel development, eBPF, system programming, and exploit development',
     color: '#00599c',
     category: 'programming',
     featured: false
   }
 ];
 
-export const getFeaturedSkills = () => skills.filter(skill => skill.featured);
-export const getSkillsByCategory = (category) => skills.filter(skill => skill.category === category);
-export const getSkillById = (id) => skills.find(skill => skill.id === id);
+export const getFeaturedSkills = () => skills.filter(s => s.featured);
+export const getSkillsByCategory = (category) => skills.filter(s => s.category === category);
+export const getSkillById = (id) => skills.find(s => s.id === id);

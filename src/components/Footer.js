@@ -1,78 +1,80 @@
-import React from 'react';
-// import { motion } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const FooterContainer = styled.footer`
-  background: var(--bg-primary);
-  border-top: 1px solid var(--border-color);
+gsap.registerPlugin(ScrollTrigger);
+
+const FooterWrapper = styled.footer`
   padding: 40px 0;
+  background: var(--bg-void);
+  border-top: 1px solid rgba(118, 75, 162, 0.1);
+  text-align: center;
 `;
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 `;
 
-const FooterContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
+const MainText = styled.p`
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--purple-light);
   }
 `;
 
-const FooterText = styled.div`
-  p {
-    color: var(--text-secondary);
-    margin-bottom: 5px;
-  }
-`;
+const SubText = styled.p`
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
 
-const FooterLinks = styled.div`
-  display: flex;
-  gap: 30px;
-  
-  @media (max-width: 768px) {
-    gap: 20px;
-  }
-  
-  a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: var(--transition-fast);
-    
-    &:hover {
-      color: var(--blue-primary);
-    }
+  &:hover {
+    color: var(--purple-light);
   }
 `;
 
 const Footer = () => {
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        footerRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 95%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <FooterContainer>
+    <FooterWrapper ref={footerRef}>
       <Container>
-        <FooterContent>
-          <FooterText>
-            <p>&copy; 2025 Aviral Srivastava. All rights reserved.</p>
-            <p>Elite Cybersecurity Engineer | Offensive AI Researcher</p>
-          </FooterText>
-          
-          <FooterLinks>
-            <a href="#home">Home</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#research">Research</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-          </FooterLinks>
-        </FooterContent>
+        <MainText>
+          Designed &amp; Built by Aviral Srivastava &copy; {new Date().getFullYear()}
+        </MainText>
+        <SubText>Crafted with Three.js, GSAP &amp; React</SubText>
       </Container>
-    </FooterContainer>
+    </FooterWrapper>
   );
 };
 
