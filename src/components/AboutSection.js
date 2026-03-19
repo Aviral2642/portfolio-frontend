@@ -338,10 +338,15 @@ const AboutSection = () => {
           and AAAI. Penn State MS grad with a 3.9 GPA and an RSA Security Scholar.
         </Bio>
 
-        {/* ── Resume Download ── */}
-        <ResumeButton ref={resumeRef} href="/resume.pdf" download="Aviral_Srivastava_Resume.pdf">
-          &#8595; Download Resume
-        </ResumeButton>
+        {/* ── Buttons ── */}
+        <div ref={resumeRef} style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 60, opacity: 0, transform: 'translateY(20px)' }}>
+          <ResumeButton href="/resume.pdf" download="Aviral_Srivastava_Resume.pdf">
+            &#8595; Download Resume
+          </ResumeButton>
+          <ResumeButton href="/exploits" style={{ color: '#ff6b6b', borderColor: 'rgba(255,107,107,0.35)', background: 'rgba(255,68,68,0.06)' }}>
+            &#9760; Explore My Exploits
+          </ResumeButton>
+        </div>
 
         {/* ── Stats ── */}
         <StatsGrid ref={statsRef}>
