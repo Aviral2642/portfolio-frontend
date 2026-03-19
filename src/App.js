@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyles from './styles/GlobalStyles';
 import LoadingScreen from './components/LoadingScreen';
 import Navigation from './components/Navigation';
@@ -8,20 +9,37 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 
+const ExploitsPage = lazy(() => import('./pages/Exploits'));
+
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
+function HomePage() {
   const [isLoading, setIsLoading] = useState(() => {
-    // Only show loading screen once per browser session
     return !sessionStorage.getItem('portfolio_loaded');
   });
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    sessionStorage.setItem('portfolio_loaded', 'true');
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+  };
+
+  return (
+    <>
+      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      <TerminalEasterEgg />
+      <Navigation />
+      <ScrollExperience />
+    </>
+  );
+}
+
+function App() {
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    // Scroll to top on every page load/refresh
     window.scrollTo(0, 0);
 
-    // Initialize Lenis smooth scroll - tuned for buttery performance
     const lenis = new Lenis({
       duration: 1.4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -33,12 +51,8 @@ function App() {
     });
     lenisRef.current = lenis;
 
-    // Connect Lenis to GSAP ticker for perfectly synced scroll
     lenis.on('scroll', ScrollTrigger.update);
-
-    const rafCallback = (time) => {
-      lenis.raf(time * 1000);
-    };
+    const rafCallback = (time) => lenis.raf(time * 1000);
     gsap.ticker.add(rafCallback);
     gsap.ticker.lagSmoothing(0);
 
@@ -48,23 +62,17 @@ function App() {
     };
   }, []);
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-    sessionStorage.setItem('portfolio_loaded', 'true');
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
-  };
-
   return (
-    <>
+    <Router>
       <GlobalStyles />
       <div className="grain-overlay" />
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      <TerminalEasterEgg />
-      <Navigation />
-      <ScrollExperience />
-    </>
+      <Suspense fallback={<div style={{ background: '#030108', minHeight: '100vh' }} />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/exploits" element={<ExploitsPage />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 

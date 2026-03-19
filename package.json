@@ -25,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "sync-exploits": "node scripts/sync-exploits.js",
+    "predeploy": "npm run sync-exploits && npm run build",
     "deploy": "gh-pages -d build"
   },
   "homepage": "https://www.aviralsrivastava.tech",
