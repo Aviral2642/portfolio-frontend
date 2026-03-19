@@ -115,9 +115,6 @@ const ResumeButton = styled.a`
   border-radius: 8px;
   background: rgba(34, 211, 238, 0.06);
   text-decoration: none;
-  margin-bottom: 60px;
-  opacity: 0;
-  transform: translateY(20px);
   transition: all 0.3s ease;
 
   &:hover {
@@ -339,7 +336,7 @@ const AboutSection = () => {
         </Bio>
 
         {/* ── Buttons ── */}
-        <div ref={resumeRef} style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 60, opacity: 0, transform: 'translateY(20px)' }}>
+        <div ref={resumeRef} style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 60 }}>
           <ResumeButton href="/resume.pdf" download="Aviral_Srivastava_Resume.pdf">
             &#8595; Download Resume
           </ResumeButton>
