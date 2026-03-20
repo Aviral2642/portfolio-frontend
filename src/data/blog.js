@@ -70,18 +70,18 @@ export const blogPosts = [
     tag: 'Cryptography',
   },
   {
-        id: 11,
-        title: 'I Found a SQL Injection in an AI Agent',
-        url: 'https://medium.com/@aviral23/i-found-a-sql-injection-in-an-ai-agent-ab2a02448047',
-        publication: 'Medium',
-        tag: 'AI Security',
+    id: 11,
+    title: 'I Found a SQL Injection in an AI Agent',
+    url: 'https://medium.com/@aviral23/i-found-a-sql-injection-in-an-ai-agent-ab2a02448047',
+    publication: 'Medium',
+    tag: 'AI Security',
   },
   {
-        id: 12,
-        title: 'CVE-2026-33017: How I Found an Unauthenticated RCE in LangFlow',
-        url: 'https://medium.com/@aviral23/cve-2026-33017-how-i-found-an-unauthenticated-rce-in-langflow-by-reading-the-code-they-already-dc96cdce5896',
-        publication: 'Medium',
-        tag: 'AI Security',
+    id: 12,
+    title: 'CVE-2026-33017: How I Found an Unauthenticated RCE in LangFlow',
+    url: 'https://medium.com/@aviral23/cve-2026-33017-how-i-found-an-unauthenticated-rce-in-langflow-by-reading-the-code-they-already-dc96cdce5896',
+    publication: 'Medium',
+    tag: 'AI Security',
   },
 ];
 
