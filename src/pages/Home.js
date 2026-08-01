@@ -170,7 +170,7 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Loading Elite Portfolio
+            Loading
           </LoadingText>
           <LoadingDots>
             {[0, 1, 2].map((i) => (

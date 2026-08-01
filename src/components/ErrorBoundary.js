@@ -86,7 +86,7 @@ class ErrorBoundary extends React.Component {
           <ErrorIcon>⚠️</ErrorIcon>
           <ErrorTitle>System Error Detected</ErrorTitle>
           <ErrorMessage>
-            The elite portfolio system has encountered an unexpected error. 
+            Something went wrong loading this page. 
             Our cybersecurity protocols are working to restore full functionality.
           </ErrorMessage>
           <RetryButton

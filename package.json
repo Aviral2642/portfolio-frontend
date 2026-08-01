@@ -27,7 +27,8 @@
     "eject": "react-scripts eject",
     "sync-exploits": "node scripts/sync-exploits.js",
     "predeploy": "npm run sync-exploits && npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "postbuild": "node -e \"const fs=require('fs');for(const r of ['exploits','research']){fs.mkdirSync('build/'+r,{recursive:true});fs.copyFileSync('build/index.html','build/'+r+'/index.html')}\""
   },
   "homepage": "https://www.aviralsrivastava.tech",
   "devDependencies": {

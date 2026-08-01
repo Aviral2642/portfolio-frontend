@@ -148,7 +148,7 @@ const HeroSection = () => {
                     "Red Team Specialist",
                     "RSA Security Scholar 2025",
                     "Amazon Security Engineer",
-                    "AI Security Expert",
+                    "AI Infrastructure Security",
                     "Zero-Day Hunter",
                     "CTF Champion"
                   ]}
