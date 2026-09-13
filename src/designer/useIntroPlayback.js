@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect,useRef,useState,useCallback} from 'react';
 import {useMotionValue} from 'framer-motion';
 import {clampIntro,introTime} from './introTiming';
 
@@ -24,7 +24,7 @@ export function useIntroScore(root,staticMode){
    if(window.scrollY>start+el.offsetHeight){stop();score.set(target);return;}
    if(!raf)raf=requestAnimationFrame(tick);
   }
-  function measure(){start=el.getBoundingClientRect().top+window.scrollY;distance=Math.max(1,el.offsetHeight-window.innerHeight);target=read();stop();score.set(target);}
+  function measure(){start=el.getBoundingClientRect().top+window.scrollY;distance=Math.max(1,el.offsetHeight-el.querySelector('.intro-stage').offsetHeight);target=read();stop();score.set(target);}
   const visibility=()=>document.hidden?stop():measure();
   const observer=new ResizeObserver(measure);observer.observe(el);measure();
   window.addEventListener('scroll',scroll,{passive:true});window.addEventListener('resize',measure,{passive:true});window.addEventListener('hashchange',measure);document.addEventListener('visibilitychange',visibility);
@@ -34,20 +34,42 @@ export function useIntroScore(root,staticMode){
 }
 
 export function useIntroDecoder(videoRef,root,score,disabled,onError){
+ const [status,setStatus]=useState('loading');
+ const retry=useRef(()=>{});
+ const activate=useCallback(()=>retry.current(),[]);
  useEffect(()=>{
   const video=videoRef.current;if(!video||disabled)return;
-  let raf=0,inView=true,disposed=false;
+  let raf=0,inView=true,disposed=false,priming=false,unlocked=false;
+  const report=value=>{if(!disposed)setStatus(value);};
   function pump(){
-   raf=0;if(disposed||document.hidden||!inView||video.readyState<2||video.seeking||!Number.isFinite(video.duration))return;
+   raf=0;if(disposed||priming||document.hidden||!inView||video.readyState<1||video.seeking||!Number.isFinite(video.duration))return;
    const target=introTime(score.get(),video.duration);
    // Quantized timestamps avoid repeating alternate frames at 60 Hz. Only one
    // seek in flight; the newest target supersedes any intermediate targets.
-   if(Math.abs(target-video.currentTime)>.001)video.currentTime=target;
+   if(Math.abs(target-video.currentTime)>.001){try{video.currentTime=target;}catch{report('blocked');}}
   }
   const schedule=()=>{if(!raf&&!disposed)raf=requestAnimationFrame(pump);};
+  // iOS may preload only metadata. Brief muted inline playback initializes its
+  // decoder, then native scrolling remains the sole owner of currentTime.
+  function prime(){
+   if(disposed||priming||unlocked)return;
+   priming=true;video.muted=true;video.defaultMuted=true;video.playsInline=true;
+   Promise.resolve(video.play()).then(()=>{
+    if(disposed)return;
+    video.pause();unlocked=true;priming=false;report('ready');schedule();
+   }).catch(()=>{if(disposed)return;priming=false;report('blocked');schedule();});
+  }
+  retry.current=prime;
+  const ready=()=>{report('ready');schedule();};
+  const wake=()=>{if(!document.hidden){if(!unlocked)prime();schedule();}};
   const observer=new IntersectionObserver(([e])=>{inView=e.isIntersecting;if(inView)schedule();},{rootMargin:'150px'});observer.observe(root.current);
   const unsubscribe=score.on('change',schedule);
-  video.addEventListener('loadeddata',schedule);video.addEventListener('seeked',schedule);video.addEventListener('error',onError);document.addEventListener('visibilitychange',schedule);schedule();
-  return()=>{disposed=true;cancelAnimationFrame(raf);observer.disconnect();unsubscribe();video.removeEventListener('loadeddata',schedule);video.removeEventListener('seeked',schedule);video.removeEventListener('error',onError);document.removeEventListener('visibilitychange',schedule);};
+  video.addEventListener('loadedmetadata',schedule);video.addEventListener('loadeddata',ready);video.addEventListener('canplay',schedule);video.addEventListener('seeked',ready);video.addEventListener('error',onError);document.addEventListener('visibilitychange',wake);
+  // Real user gestures can unlock Low Power Mode / restrictive media policies.
+  window.addEventListener('touchstart',prime,{passive:true});window.addEventListener('pointerdown',prime,{passive:true});
+  const slow=setTimeout(()=>{if(!unlocked&&video.readyState<2)report('blocked');},8000);
+  prime();schedule();
+  return()=>{disposed=true;retry.current=()=>{};clearTimeout(slow);video.pause();cancelAnimationFrame(raf);observer.disconnect();unsubscribe();video.removeEventListener('loadedmetadata',schedule);video.removeEventListener('loadeddata',ready);video.removeEventListener('canplay',schedule);video.removeEventListener('seeked',ready);video.removeEventListener('error',onError);document.removeEventListener('visibilitychange',wake);window.removeEventListener('touchstart',prime);window.removeEventListener('pointerdown',prime);};
  },[videoRef,root,score,disabled,onError]);
+ return {status,activate};
 }

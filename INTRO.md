@@ -1,4 +1,4 @@
-# Replacement video opening — local only
+# Replacement video opening
 
 Source: `/Users/aviralsrivastava/Downloads/Character_walking_in_cyberpunk_city_20260911231755.mp4`.
 This is the replacement, not the rejected Times Square clip. Source untouched.
@@ -7,7 +7,7 @@ Native scroll drives a single Motion value. First 80% advances the supplied
 camera move through the city to the eye. 84.5–94% reveals the identity, followed
 by a reading hold and native sticky release into existing Langflow content.
 Desktop height 560svh; phone 450svh. No initial dead scroll interval, wheel
-interception, autoplay, audio, or per-frame React state updates.
+interception, continuous autoplay, audio, or per-frame React state updates.
 
 Frame quantization + one seek in flight prevent decoder flooding and repeated
 alternate frames. Hidden/offscreen media work stops. Links remain available.
@@ -17,6 +17,36 @@ The original is 1080p/24 fps. Delivery copy is 720p/60 fps H.264, all-intra,
 silent, approximately 18 MB. Optical flow creates intermediate frames, not new
 source detail; it can introduce artifacts. No hundreds-of-images sequence is
 stored or decoded into RAM. No new runtime library or service was installed.
+
+## Mobile decoder correction — September 12, 2026
+
+The original decoder waited for `loadeddata` without initializing playback.
+Mobile Safari may load only metadata until playback is requested. The decoder
+now briefly starts muted inline playback, pauses it, and hands time ownership
+back to the scroll score. Metadata-stage seeking is allowed; decoded-data and
+seek-completion events resume the newest target. Touch/pointer gestures retry
+blocked initialization. A blocked/slow load offers “Enable scroll video” and
+“Continue without video”; actual media errors retain the static identity.
+
+Phones select a separate 960x540 / 60 fps all-intra H.264 derivative (~6.5 MiB,
+about 65% smaller) through the video source media query. Desktop keeps 720p.
+Both files have fast-start metadata, no audio and independently seekable frames.
+Progress distance uses the sticky stage height rather than dynamic innerHeight.
+
+Local verification: 22 unit tests and production build/lint pass. Chrome mobile
+emulation verified mobile source selection, forward/reverse and rapid jumps,
+identity/research handoff, no horizontal overflow or page errors, and live
+reduced-motion preference changes. Physical iPhone and Safari/WebKit remain
+unverified (WebKit browser executable not installed). Historical desktop frame
+measurements below are not measurements of this mobile correction.
+
+Mobile encoding (existing FFmpeg; source preserved):
+
+```sh
+ffmpeg -n -i public/intro/cyberpunk-walk.mp4 -vf scale=960:540 \
+ -c:v libx264 -preset slow -crf 26 -g 1 -bf 0 -pix_fmt yuv420p \
+ -an -movflags +faststart public/intro/cyberpunk-walk-mobile.mp4
+```
 
 Preparation with the existing ffmpeg installation (do not overwrite source):
 
