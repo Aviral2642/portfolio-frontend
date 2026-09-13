@@ -1,75 +1,47 @@
-import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import GlobalStyles from './styles/GlobalStyles';
-import LoadingScreen from './components/LoadingScreen';
-import Navigation from './components/Navigation';
-import ScrollExperience from './components/ScrollExperience';
-import TerminalEasterEgg from './components/TerminalEasterEgg';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
+import Portfolio from './designer/DesignerPortfolio';
+import {preloadArchive} from './designer/archiveRoute';
 
-const ExploitsPage = lazy(() => import('./pages/Exploits'));
+const ExploitsPage = lazy(preloadArchive);
+const enableExperiments = import.meta.env.DEV || import.meta.env.MODE === 'review';
+const MicroscopePreview = enableExperiments ? lazy(() => import('./designer/microscope/Microscope')) : null;
 
-gsap.registerPlugin(ScrollTrigger);
-
-function HomePage() {
-  const [isLoading, setIsLoading] = useState(() => {
-    return !sessionStorage.getItem('portfolio_loaded');
-  });
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-    sessionStorage.setItem('portfolio_loaded', 'true');
-    setTimeout(() => ScrollTrigger.refresh(), 100);
-  };
-
-  return (
-    <>
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      <TerminalEasterEgg />
-      <Navigation />
-      <ScrollExperience />
-    </>
-  );
+function RouteMetadata() {
+  const {pathname} = useLocation();
+  useEffect(() => {
+    const archive = /^\/exploits\/?$/.test(pathname);
+    const microscope = enableExperiments && pathname === '/preview/microscope';
+    const title = microscope ? 'Under the microscope — local preview' : archive ? 'Exploits & Analysis — Aviral Srivastava' : 'Aviral Srivastava - Security Researcher';
+    const url = `https://www.aviralsrivastava.tech/${archive ? 'exploits/' : ''}`;
+    const description = archive ? 'Independent security research archive. Kernel and AI infrastructure research, analysis, and disclosure references by Aviral Srivastava.' : 'Aviral Srivastava — security engineer and researcher. Explore systems security, binary and malware analysis, AI infrastructure research, talks, and selected work.';
+    document.title = title;
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
+    for (const type of ['og', 'twitter']) {
+      document.querySelector(`meta[property="${type}:title"]`)?.setAttribute('content', title);
+      document.querySelector(`meta[property="${type}:url"]`)?.setAttribute('content', url);
+      document.querySelector(`meta[property="${type}:description"]`)?.setAttribute('content', description);
+    }
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+  }, [pathname]);
+  return null;
 }
 
 function App() {
-  const lenisRef = useRef(null);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const lenis = new Lenis({
-      duration: 1.4,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.8,
-      touchMultiplier: 1.5,
-      lerp: 0.08,
-    });
-    lenisRef.current = lenis;
-
-    lenis.on('scroll', ScrollTrigger.update);
-    const rafCallback = (time) => lenis.raf(time * 1000);
-    gsap.ticker.add(rafCallback);
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      lenis.destroy();
-      gsap.ticker.remove(rafCallback);
-    };
-  }, []);
-
   return (
-    <Router>
+    // The archive owns its native View Transition snapshot. Its flushSync commit
+    // must not be deferred inside React Router's separate startTransition.
+    <Router useTransitions={false}>
+      <RouteMetadata/>
       <GlobalStyles />
-      <div className="grain-overlay" />
-      <Suspense fallback={<div style={{ background: '#030108', minHeight: '100vh' }} />}>
+      <Suspense fallback={<main className="route-loading" role="status">Opening the page…</main>}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Portfolio />} />
           <Route path="/exploits" element={<ExploitsPage />} />
+          {enableExperiments && <Route path="/preview/microscope" element={<MicroscopePreview />} />}
+          <Route path="/research" element={<Navigate to="/#research" replace />} />
+          <Route path="*" element={<main className="route-loading"><h1>Outside the known map.</h1><a href="/">Return to the portfolio</a></main>} />
         </Routes>
       </Suspense>
     </Router>

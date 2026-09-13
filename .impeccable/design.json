@@ -1,0 +1,589 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T09:04:31.362Z",
+  "title": "Design System: Aviral Srivastava — Designer Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "near-black": {
+        "displayName": "Near Black",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0133 300.16)",
+          "oklch(26% 0.0133 300.16)",
+          "oklch(38% 0.0133 300.16)",
+          "oklch(49% 0.0133 300.16)",
+          "oklch(61% 0.0133 300.16)",
+          "oklch(72% 0.0133 300.16)",
+          "oklch(84% 0.0133 300.16)",
+          "oklch(95% 0.0133 300.16)"
+        ]
+      },
+      "reading-white": {
+        "displayName": "Reading White",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0062 317.75)",
+          "oklch(26% 0.0062 317.75)",
+          "oklch(38% 0.0062 317.75)",
+          "oklch(49% 0.0062 317.75)",
+          "oklch(61% 0.0062 317.75)",
+          "oklch(72% 0.0062 317.75)",
+          "oklch(84% 0.0062 317.75)",
+          "oklch(95% 0.0062 317.75)"
+        ]
+      },
+      "muted-lilac": {
+        "displayName": "Muted Lilac",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0208 305.17)",
+          "oklch(26% 0.0208 305.17)",
+          "oklch(38% 0.0208 305.17)",
+          "oklch(49% 0.0208 305.17)",
+          "oklch(61% 0.0208 305.17)",
+          "oklch(72% 0.0208 305.17)",
+          "oklch(84% 0.0208 305.17)",
+          "oklch(95% 0.0208 305.17)"
+        ]
+      },
+      "electric-purple": {
+        "displayName": "Electric Purple",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.1944 294.49)",
+          "oklch(26% 0.1944 294.49)",
+          "oklch(38% 0.1944 294.49)",
+          "oklch(49% 0.1944 294.49)",
+          "oklch(61% 0.1944 294.49)",
+          "oklch(72% 0.1944 294.49)",
+          "oklch(84% 0.1944 294.49)",
+          "oklch(95% 0.1944 294.49)"
+        ]
+      },
+      "editorial-purple": {
+        "displayName": "Editorial Purple",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.1805 295.90)",
+          "oklch(26% 0.1805 295.90)",
+          "oklch(38% 0.1805 295.90)",
+          "oklch(49% 0.1805 295.90)",
+          "oklch(61% 0.1805 295.90)",
+          "oklch(72% 0.1805 295.90)",
+          "oklch(84% 0.1805 295.90)",
+          "oklch(95% 0.1805 295.90)"
+        ]
+      },
+      "selection-magenta": {
+        "displayName": "Selection Magenta",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.2448 324.00)",
+          "oklch(26% 0.2448 324.00)",
+          "oklch(38% 0.2448 324.00)",
+          "oklch(49% 0.2448 324.00)",
+          "oklch(61% 0.2448 324.00)",
+          "oklch(72% 0.2448 324.00)",
+          "oklch(84% 0.2448 324.00)",
+          "oklch(95% 0.2448 324.00)"
+        ]
+      },
+      "research-magenta": {
+        "displayName": "Research Magenta",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.2491 327.02)",
+          "oklch(26% 0.2491 327.02)",
+          "oklch(38% 0.2491 327.02)",
+          "oklch(49% 0.2491 327.02)",
+          "oklch(61% 0.2491 327.02)",
+          "oklch(72% 0.2491 327.02)",
+          "oklch(84% 0.2491 327.02)",
+          "oklch(95% 0.2491 327.02)"
+        ]
+      },
+      "divider": {
+        "displayName": "Divider",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0244 309.27)",
+          "oklch(26% 0.0244 309.27)",
+          "oklch(38% 0.0244 309.27)",
+          "oklch(49% 0.0244 309.27)",
+          "oklch(61% 0.0244 309.27)",
+          "oklch(72% 0.0244 309.27)",
+          "oklch(84% 0.0244 309.27)",
+          "oklch(95% 0.0244 309.27)"
+        ]
+      },
+      "about-surface": {
+        "displayName": "About Surface",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0171 307.44)",
+          "oklch(26% 0.0171 307.44)",
+          "oklch(38% 0.0171 307.44)",
+          "oklch(49% 0.0171 307.44)",
+          "oklch(61% 0.0171 307.44)",
+          "oklch(72% 0.0171 307.44)",
+          "oklch(84% 0.0171 307.44)",
+          "oklch(95% 0.0171 307.44)"
+        ]
+      },
+      "contact-ink": {
+        "displayName": "Contact Ink",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0442 298.95)",
+          "oklch(26% 0.0442 298.95)",
+          "oklch(38% 0.0442 298.95)",
+          "oklch(49% 0.0442 298.95)",
+          "oklch(61% 0.0442 298.95)",
+          "oklch(72% 0.0442 298.95)",
+          "oklch(84% 0.0442 298.95)",
+          "oklch(95% 0.0442 298.95)"
+        ]
+      },
+      "light-surface-hover": {
+        "displayName": "Light Surface Hover",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0616 303.64)",
+          "oklch(26% 0.0616 303.64)",
+          "oklch(38% 0.0616 303.64)",
+          "oklch(49% 0.0616 303.64)",
+          "oklch(61% 0.0616 303.64)",
+          "oklch(72% 0.0616 303.64)",
+          "oklch(84% 0.0616 303.64)",
+          "oklch(95% 0.0616 303.64)"
+        ]
+      },
+      "dark-surface-focus": {
+        "displayName": "Dark Surface Focus",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.1114 317.40)",
+          "oklch(26% 0.1114 317.40)",
+          "oklch(38% 0.1114 317.40)",
+          "oklch(49% 0.1114 317.40)",
+          "oklch(61% 0.1114 317.40)",
+          "oklch(72% 0.1114 317.40)",
+          "oklch(84% 0.1114 317.40)",
+          "oklch(95% 0.1114 317.40)"
+        ]
+      },
+      "light-surface-focus": {
+        "displayName": "Light Surface Focus",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0454 310.27)",
+          "oklch(26% 0.0454 310.27)",
+          "oklch(38% 0.0454 310.27)",
+          "oklch(49% 0.0454 310.27)",
+          "oklch(61% 0.0454 310.27)",
+          "oklch(72% 0.0454 310.27)",
+          "oklch(84% 0.0454 310.27)",
+          "oklch(95% 0.0454 310.27)"
+        ]
+      },
+      "project-ink": {
+        "displayName": "Project Ink",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0778 299.54)",
+          "oklch(26% 0.0778 299.54)",
+          "oklch(38% 0.0778 299.54)",
+          "oklch(49% 0.0778 299.54)",
+          "oklch(61% 0.0778 299.54)",
+          "oklch(72% 0.0778 299.54)",
+          "oklch(84% 0.0778 299.54)",
+          "oklch(95% 0.0778 299.54)"
+        ]
+      },
+      "project-light-ink": {
+        "displayName": "Project Light Ink",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0277 301.75)",
+          "oklch(26% 0.0277 301.75)",
+          "oklch(38% 0.0277 301.75)",
+          "oklch(49% 0.0277 301.75)",
+          "oklch(61% 0.0277 301.75)",
+          "oklch(72% 0.0277 301.75)",
+          "oklch(84% 0.0277 301.75)",
+          "oklch(95% 0.0277 301.75)"
+        ]
+      },
+      "atlas-ink": {
+        "displayName": "Atlas Ink",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.1959 296.99)",
+          "oklch(26% 0.1959 296.99)",
+          "oklch(38% 0.1959 296.99)",
+          "oklch(49% 0.1959 296.99)",
+          "oklch(61% 0.1959 296.99)",
+          "oklch(72% 0.1959 296.99)",
+          "oklch(84% 0.1959 296.99)",
+          "oklch(95% 0.1959 296.99)"
+        ]
+      },
+      "poster-ink": {
+        "displayName": "Poster Ink",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.1550 304.57)",
+          "oklch(26% 0.1550 304.57)",
+          "oklch(38% 0.1550 304.57)",
+          "oklch(49% 0.1550 304.57)",
+          "oklch(61% 0.1550 304.57)",
+          "oklch(72% 0.1550 304.57)",
+          "oklch(84% 0.1550 304.57)",
+          "oklch(95% 0.1550 304.57)"
+        ]
+      },
+      "project-pilot": {
+        "displayName": "Project Pilot",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.1055 300.42)",
+          "oklch(26% 0.1055 300.42)",
+          "oklch(38% 0.1055 300.42)",
+          "oklch(49% 0.1055 300.42)",
+          "oklch(61% 0.1055 300.42)",
+          "oklch(72% 0.1055 300.42)",
+          "oklch(84% 0.1055 300.42)",
+          "oklch(95% 0.1055 300.42)"
+        ]
+      },
+      "project-atlas": {
+        "displayName": "Project Atlas",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0315 306.17)",
+          "oklch(26% 0.0315 306.17)",
+          "oklch(38% 0.0315 306.17)",
+          "oklch(49% 0.0315 306.17)",
+          "oklch(61% 0.0315 306.17)",
+          "oklch(72% 0.0315 306.17)",
+          "oklch(84% 0.0315 306.17)",
+          "oklch(95% 0.0315 306.17)"
+        ]
+      },
+      "project-forge": {
+        "displayName": "Project Forge",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.2123 324.54)",
+          "oklch(26% 0.2123 324.54)",
+          "oklch(38% 0.2123 324.54)",
+          "oklch(49% 0.2123 324.54)",
+          "oklch(61% 0.2123 324.54)",
+          "oklch(72% 0.2123 324.54)",
+          "oklch(84% 0.2123 324.54)",
+          "oklch(95% 0.2123 324.54)"
+        ]
+      },
+      "project-kernel": {
+        "displayName": "Project Kernel",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0208 300.61)",
+          "oklch(26% 0.0208 300.61)",
+          "oklch(38% 0.0208 300.61)",
+          "oklch(49% 0.0208 300.61)",
+          "oklch(61% 0.0208 300.61)",
+          "oklch(72% 0.0208 300.61)",
+          "oklch(84% 0.0208 300.61)",
+          "oklch(95% 0.0208 300.61)"
+        ]
+      },
+      "project-polymorphic": {
+        "displayName": "Project Polymorphic",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0653 299.65)",
+          "oklch(26% 0.0653 299.65)",
+          "oklch(38% 0.0653 299.65)",
+          "oklch(49% 0.0653 299.65)",
+          "oklch(61% 0.0653 299.65)",
+          "oklch(72% 0.0653 299.65)",
+          "oklch(84% 0.0653 299.65)",
+          "oklch(95% 0.0653 299.65)"
+        ]
+      },
+      "project-emulation": {
+        "displayName": "Project Emulation",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0792 300.43)",
+          "oklch(26% 0.0792 300.43)",
+          "oklch(38% 0.0792 300.43)",
+          "oklch(49% 0.0792 300.43)",
+          "oklch(61% 0.0792 300.43)",
+          "oklch(72% 0.0792 300.43)",
+          "oklch(84% 0.0792 300.43)",
+          "oklch(95% 0.0792 300.43)"
+        ]
+      },
+      "speaking-paper": {
+        "displayName": "Speaking Paper",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0392 305.60)",
+          "oklch(26% 0.0392 305.60)",
+          "oklch(38% 0.0392 305.60)",
+          "oklch(49% 0.0392 305.60)",
+          "oklch(61% 0.0392 305.60)",
+          "oklch(72% 0.0392 305.60)",
+          "oklch(84% 0.0392 305.60)",
+          "oklch(95% 0.0392 305.60)"
+        ]
+      },
+      "writing-purple": {
+        "displayName": "Writing Purple",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.1721 298.44)",
+          "oklch(26% 0.1721 298.44)",
+          "oklch(38% 0.1721 298.44)",
+          "oklch(49% 0.1721 298.44)",
+          "oklch(61% 0.1721 298.44)",
+          "oklch(72% 0.1721 298.44)",
+          "oklch(84% 0.1721 298.44)",
+          "oklch(95% 0.1721 298.44)"
+        ]
+      },
+      "writing-paper": {
+        "displayName": "Writing Paper",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0263 308.12)",
+          "oklch(26% 0.0263 308.12)",
+          "oklch(38% 0.0263 308.12)",
+          "oklch(49% 0.0263 308.12)",
+          "oklch(61% 0.0263 308.12)",
+          "oklch(72% 0.0263 308.12)",
+          "oklch(84% 0.0263 308.12)",
+          "oklch(95% 0.0263 308.12)"
+        ]
+      },
+      "input-purple": {
+        "displayName": "Input Purple",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.1576 298.42)",
+          "oklch(26% 0.1576 298.42)",
+          "oklch(38% 0.1576 298.42)",
+          "oklch(49% 0.1576 298.42)",
+          "oklch(61% 0.1576 298.42)",
+          "oklch(72% 0.1576 298.42)",
+          "oklch(84% 0.1576 298.42)",
+          "oklch(95% 0.1576 298.42)"
+        ]
+      },
+      "flow-white": {
+        "displayName": "Flow White",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(26% 0.0000 89.88)",
+          "oklch(38% 0.0000 89.88)",
+          "oklch(49% 0.0000 89.88)",
+          "oklch(61% 0.0000 89.88)",
+          "oklch(72% 0.0000 89.88)",
+          "oklch(84% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Identity display",
+        "purpose": "Desktop first-name composition; mobile sizes live in the responsive rules."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Oversized Anton section titles with purple emphasized words."
+      },
+      "title": {
+        "displayName": "Evidence title",
+        "purpose": "Readable Manrope evidence subheadings."
+      },
+      "body": {
+        "displayName": "Reading body",
+        "purpose": "Research evidence and biography prose."
+      },
+      "label": {
+        "displayName": "Editorial label",
+        "purpose": "Small supporting category, venue, and graphic labels."
+      },
+      "research-meta": {
+        "displayName": "Research metadata",
+        "purpose": "Monospace CVE and research identifiers."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "title-entry",
+        "value": "0.85s expo.out",
+        "purpose": "GSAP owns section title entrance transforms; no-preference only."
+      },
+      {
+        "name": "identity-entry",
+        "value": "1.05s expo.out; stagger 0.13s",
+        "purpose": "GSAP owns hero name entrance."
+      },
+      {
+        "name": "cover-reveal",
+        "value": "0.45s cubic-bezier(.2,.8,.2,1)",
+        "purpose": "CSS clip-path and translateY animation when the active cover mounts."
+      },
+      {
+        "name": "editorial-link",
+        "value": "0.18s",
+        "purpose": "CSS owns link color and arrow transform transitions."
+      },
+      {
+        "name": "writing-hover",
+        "value": "filter 0.2s; brightness(1.06)",
+        "purpose": "CSS owns filter only; GSAP owns writing transforms and clip paths."
+      },
+      {
+        "name": "research-pin",
+        "value": "360px scroll distance; min-width 960px",
+        "purpose": "GSAP desktop-only pin; disabled for reduced motion."
+      },
+      {
+        "name": "fluid-idle",
+        "value": "2200ms",
+        "purpose": "FluidInk WebGL loop idles after mouse activity stops; hidden documents pause."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "No GSAP section animation, no fluid, no CSS animation/transitions; sticky reading elements become static."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "max-width: 600px"
+      },
+      {
+        "name": "tablet",
+        "value": "max-width: 959px"
+      },
+      {
+        "name": "desktop",
+        "value": "min-width: 960px"
+      },
+      {
+        "name": "wide",
+        "value": "min-width: 1700px"
+      },
+      {
+        "name": "short-desktop",
+        "value": "min-width: 960px and max-height: 850px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Research action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Square primary link used for immediate research access.",
+      "html": "<a class=\"ds-button\" href=\"#research\">View research<svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg></a>",
+      "css": "@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:200 800;font-display:swap}@font-face{font-family:Anton;src:url('/fonts/anton-regular.ttf') format('truetype');font-weight:400;font-display:swap}.ds-button{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;background:#f0edf1;color:#100c18;padding:13px 20px;min-width:188px;border:0;border-radius:0;font:650 14px Manrope,sans-serif;text-decoration:none;transition:background .18s}.ds-button svg{width:23px;height:23px;transition:transform .18s}.ds-button:hover{background:#a077ff}.ds-button:hover svg{transform:translate(3px,-3px)}.ds-link:focus-visible,.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-archive summary:focus-visible,.ds-cover-link:focus-visible{outline:3px solid #edb8ff;outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button,.ds-button svg{transition:none}}"
+    },
+    {
+      "name": "Editorial link",
+      "kind": "button",
+      "refersTo": "link-editorial",
+      "description": "An underlined source or action link on dark sections.",
+      "html": "<a class=\"ds-link\" href=\"#research\">Read my research<svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg></a>",
+      "css": "@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:200 800;font-display:swap}@font-face{font-family:Anton;src:url('/fonts/anton-regular.ttf') format('truetype');font-weight:400;font-display:swap}.ds-link{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;border-bottom:1px solid currentColor;padding:8px 0;font:650 14px Manrope,sans-serif;color:#f0edf1;text-decoration:none;transition:color .18s}.ds-link svg{width:23px;height:23px;transition:transform .18s}.ds-link:hover{color:#a077ff}.ds-link:hover svg{transform:translate(3px,-3px)}.ds-link:focus-visible,.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-archive summary:focus-visible,.ds-cover-link:focus-visible{outline:3px solid #edb8ff;outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-link,.ds-link svg{transition:none}}"
+    },
+    {
+      "name": "Contact submit",
+      "kind": "button",
+      "refersTo": "button-submit",
+      "description": "Dark submit action; disabled styling reflects the sending state.",
+      "html": "<button type=\"button\" class=\"ds-submit\">Send message<svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg></button>",
+      "css": "@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:200 800;font-display:swap}@font-face{font-family:Anton;src:url('/fonts/anton-regular.ttf') format('truetype');font-weight:400;font-display:swap}.ds-submit{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;padding:14px 20px;border:0;border-radius:0;background:#170f25;color:#eee4fc;font:400 13px Manrope,sans-serif;cursor:pointer}.ds-submit svg{width:23px;height:23px}.ds-submit:focus-visible{outline:3px solid #201329;outline-offset:6px}.ds-submit:disabled{opacity:.5;cursor:wait}"
+    },
+    {
+      "name": "Contact field",
+      "kind": "input",
+      "refersTo": "input-contact",
+      "description": "Labeled square field shown on the purple contact spread.",
+      "html": "<label class=\"ds-field\">Email<input type=\"email\" name=\"email\" autocomplete=\"email\" required maxlength=\"254\"></label>",
+      "css": "@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:200 800;font-display:swap}@font-face{font-family:Anton;src:url('/fonts/anton-regular.ttf') format('truetype');font-weight:400;font-display:swap}.ds-field{display:grid;gap:8px;color:#170f25;font:400 13px Manrope,sans-serif}.ds-field input{width:100%;border:1px solid #624386;background:#b18bf8;color:#170f25;border-radius:0;padding:12px;caret-color:#170f25;font:400 13px Manrope,sans-serif}.ds-field input:focus-visible{outline:3px solid #201329;outline-offset:6px}"
+    },
+    {
+      "name": "Portfolio navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Opaque navigation with native section links and immediate resume access.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Portfolio navigation\"><a class=\"ds-brand\" href=\"#top\" aria-label=\"Aviral Srivastava, home\">AS</a><div class=\"ds-nav-sections\"><a href=\"#research\">Research</a><a href=\"#recognition\">Recognition</a><a href=\"#about\">About</a><a href=\"#contact\">Contact</a></div><a class=\"ds-resume\" href=\"/resume.pdf\">Resume<svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg></a></nav>",
+      "css": "@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:200 800;font-display:swap}@font-face{font-family:Anton;src:url('/fonts/anton-regular.ttf') format('truetype');font-weight:400;font-display:swap}.ds-nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:25px;padding:0 3vw;background:#0b090f;color:#f0edf1;border-bottom:1px solid #39323f;font:400 13px Manrope,sans-serif}.ds-nav a{color:inherit;text-decoration:none}.ds-nav a:hover{color:#a077ff}.ds-brand{font:400 34px/.9 Anton,sans-serif;letter-spacing:-.02em}.ds-nav-sections{display:flex;gap:30px}.ds-nav-sections a{padding:15px 0}.ds-resume{display:flex;align-items:center;gap:12px;min-height:32px}.ds-resume svg{width:23px;height:23px}.ds-link:focus-visible,.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-archive summary:focus-visible,.ds-cover-link:focus-visible{outline:3px solid #edb8ff;outline-offset:6px}@media(max-width:600px){.ds-nav{height:84px;padding:0 6vw;flex-wrap:wrap;gap:8px;font-size:11px}.ds-brand{font-size:27px}.ds-nav-sections{order:3;width:100%;justify-content:space-between;gap:8px;font-size:10px;padding-bottom:3px}.ds-nav-sections a{display:flex;align-items:center;min-height:30px;padding:0}.ds-resume svg{width:16px;height:16px}}"
+    },
+    {
+      "name": "Credential tag",
+      "kind": "chip",
+      "refersTo": "credential",
+      "description": "Non-interactive factual credential marker in the biography.",
+      "html": "<span class=\"ds-credential\">OSCP</span>",
+      "css": "@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:200 800;font-display:swap}@font-face{font-family:Anton;src:url('/fonts/anton-regular.ttf') format('truetype');font-weight:400;font-display:swap}.ds-credential{display:inline-block;border:1px solid #54475e;border-radius:0;font:400 11px Manrope,sans-serif;padding:8px 12px;color:#f0edf1;background:transparent}"
+    },
+    {
+      "name": "Project cover",
+      "kind": "card",
+      "refersTo": "project-cover",
+      "description": "Representative AdversaryPilot cover; active project selection remains owned by the React list.",
+      "html": "<a class=\"ds-cover-link\" href=\"https://github.com/Aviral2642\" aria-label=\"View Aviral's public projects\"><div class=\"ds-cover\"><span class=\"ds-category\">AI / SECURITY</span><div class=\"ds-lines\" aria-hidden=\"true\"><i style=\"--i:0\"></i><i style=\"--i:1\"></i><i style=\"--i:2\"></i><i style=\"--i:3\"></i><i style=\"--i:4\"></i><i style=\"--i:5\"></i><i style=\"--i:6\"></i><i style=\"--i:7\"></i><i style=\"--i:8\"></i><i style=\"--i:9\"></i><i style=\"--i:10\"></i><i style=\"--i:11\"></i></div><div class=\"ds-name\">Adversary<br><span>Pilot</span></div><span class=\"ds-footer\">AVIRAL SRIVASTAVA / OPEN SOURCE</span></div></a>",
+      "css": "@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:200 800;font-display:swap}@font-face{font-family:Anton;src:url('/fonts/anton-regular.ttf') format('truetype');font-weight:400;font-display:swap}.ds-cover-link{display:block;color:inherit;text-decoration:none}.ds-cover{aspect-ratio:1;position:relative;overflow:hidden;padding:24px;background:#b49ae2;color:#130d1c}.ds-category,.ds-footer{font:400 9px Manrope,sans-serif;letter-spacing:.07em;position:relative;z-index:2}.ds-footer{position:absolute;bottom:22px;left:24px}.ds-name{font:400 clamp(60px,7vw,115px)/.95 Anton,sans-serif;letter-spacing:-.025em;position:absolute;bottom:70px;left:24px;z-index:2}.ds-name span{color:#2e1d48}.ds-lines{position:absolute;inset:-30% -30% -30% 0;transform:rotate(-35deg)}.ds-lines i{position:absolute;top:calc(var(--i)*8%);left:0;width:100%;height:3%;border-top:1px solid #36274b;border-bottom:1px solid #36274b;transform:translateX(calc(var(--i)*2%));opacity:.5}.ds-link:focus-visible,.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-archive summary:focus-visible,.ds-cover-link:focus-visible{outline:3px solid #edb8ff;outline-offset:6px}"
+    },
+    {
+      "name": "Reading archive",
+      "kind": "custom",
+      "description": "Native expandable secondary content, with visible open state.",
+      "html": "<details class=\"ds-archive\"><summary>Experience &amp; education<span aria-hidden=\"true\">+</span></summary><div class=\"ds-archive-body\"><p>Professional background and education appear here in the portfolio.</p></div></details>",
+      "css": "@font-face{font-family:Manrope;src:url('/fonts/manrope-variable.ttf') format('truetype');font-weight:200 800;font-display:swap}@font-face{font-family:Anton;src:url('/fonts/anton-regular.ttf') format('truetype');font-weight:400;font-display:swap}.ds-archive{border-top:1px solid #39323f;color:#f0edf1;font-family:Manrope,sans-serif}.ds-archive summary{display:flex;align-items:center;justify-content:space-between;gap:30px;font-size:18px;font-weight:550;padding:24px 0;list-style:none;cursor:pointer}.ds-archive summary::-webkit-details-marker{display:none}.ds-archive summary>span{font-size:30px;font-weight:300;transition:transform .2s}.ds-archive[open] summary>span{transform:rotate(45deg)}.ds-archive-body{padding:10px 0 35px;display:grid;gap:22px;color:#b4aebc;font-size:14px}.ds-link:focus-visible,.ds-button:focus-visible,.ds-nav a:focus-visible,.ds-archive summary:focus-visible,.ds-cover-link:focus-visible{outline:3px solid #edb8ff;outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-archive summary>span{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Research in Electric Type",
+    "overview": "A graphic-heavy designer portfolio built around near-black space, electric-purple typography, layered research dossiers, and large editorial spreads. Anton turns identity and research into visual material; Manrope gives the evidence, professional background, and actions a calm reading voice. The palette and visual language follow the user-pinned September 6 brief; the North Star is a descriptive label for that existing direction, not a separately approved concept.\n\nThe implemented system is code-first. Its authority is PRODUCT.md, the design-contract in public/index.html, and the current src/designer implementation, supported by the desktop and mobile review frames in .impeccable/review. No approved image comp exists. Older world concepts and global theme tokens do not define this surface.",
+    "keyCharacteristics": [
+      "Oversized condensed type with deliberate line breaks and close leading.",
+      "Near-black reading sections alternating with full-width purple editorial spreads.",
+      "Source-backed research graphics, supplied campus photographs, and direct evidence links.",
+      "Flat rectangular controls, fine rules, and a restrained circular nomination stamp.",
+      "Native scrolling with varied, optional motion and a small fluid pointer enhancement."
+    ],
+    "rules": [
+      {
+        "name": "The Surface Contrast Rule",
+        "body": "Choose text and focus colors for the surface beneath them. Light purple spreads use dark ink for actionable states.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do preserve the user-pinned near-black/electric-purple editorial identity and local Anton/Manrope pairing.",
+      "Do use real research, project, nomination, campus, and publication evidence as the graphic subject.",
+      "Do keep direct resume, research, contact, keyboard, and mobile access visible and usable.",
+      "Do preserve final cascade overrides and test state colors against the actual component surface.",
+      "Do give GSAP, CSS, and WebGL distinct motion ownership and honor reduced-motion preferences."
+    ],
+    "donts": [
+      "Don't revive the observatory, navigable world, mandatory intro, fake terminal, or unexplained floating objects.",
+      "Don't describe the Pwnie nomination as a win or publish unsupported professional claims.",
+      "Don't turn the portfolio into a repeated generic card grid or replace authentic portraiture with a generated likeness.",
+      "Don't make fluid ink, hover, or scroll animation necessary to reach content or follow a link.",
+      "Don't treat old global theme tokens or pre-correction screenshot colors as the designer surface's authority."
+    ]
+  }
+}

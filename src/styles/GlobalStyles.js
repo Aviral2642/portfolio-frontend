@@ -1,6 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+  @font-face {font-family:'Anton';src:url('/fonts/anton-regular.ttf') format('truetype');font-display:swap;font-weight:400;}
+  @font-face {
+    font-family: 'Manrope';
+    src: url('/fonts/manrope-variable.ttf') format('truetype');
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/jetbrains-mono-variable.ttf') format('truetype');
+    font-weight: 100 800;
+    font-style: normal;
+    font-display: swap;
+  }
   * {
     margin: 0;
     padding: 0;
@@ -31,6 +46,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
+    position: relative;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -58,12 +74,6 @@ const GlobalStyles = createGlobalStyle`
     background: var(--bg-void);
     color: var(--text-primary);
     overflow-x: hidden;
-  }
-
-  /* GPU-accelerate scrolling sections */
-  section {
-    will-change: transform;
-    transform: translateZ(0);
   }
 
   /* Neon pulse border on cards */

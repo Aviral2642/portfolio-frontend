@@ -1,0 +1,7 @@
+Supplied video: Character_walking_in_cyberpunk_city_20260911231755.mp4
+Provided by portfolio owner Aviral Srivastava, September 11, 2026.
+Original: 1920x1080, 24 fps, 10 seconds. Generated character, not Aviral's photo.
+Scroll derivative: silent 1280x720, optical-flow interpolated 60 fps, all-intra
+H.264. Poster extracted from this replacement clip. Original left untouched.
+Generator and commercial usage terms not supplied; confirm rights before deploy.
+No material from the rejected Times Square clip is included.

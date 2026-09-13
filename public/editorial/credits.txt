@@ -1,0 +1,62 @@
+Original editorial design, research posters, project covers, conference tickets,
+publication spreads and beveled gold typography created for Aviral's portfolio.
+The opening uses the owner-supplied film documented in /intro/credits.txt.
+Framer Motion (MIT) coordinates video/identity and archive image transitions.
+These are editorial graphics, not software screenshots or official award assets.
+The social image /og-image.png is an actual browser screenshot of the local hero.
+
+No personal portrait is used, at the owner's request.
+Campus imagery: penn-state.webp and amity.webp converted from the owner-supplied
+penn-state.png and amity.png on 2026-09-12; WebP compression only, original
+dimensions retained. amazon-sunnyvale.webp supplied by the owner on 2026-09-06.
+Usage rights not independently established. Amazon was supplied as WebP.
+The Amazon photograph retains its stock watermark. The owner explicitly requested
+retaining this image and removing its on-page preview caption on 2026-09-12.
+That approval is not independent verification of the image's license.
+
+HTB rank snapshot (#34 global / #10 USA) supplied by the owner on 2026-09-06;
+not independently confirmed. The site labels it as owner-reported and links
+directly to the supplied live profile. No live API or automatic rank updates.
+
+Anton, Manrope and JetBrains Mono: SIL Open Font License 1.1, licenses in /fonts/.
+Anton source: https://github.com/google/fonts/tree/main/ofl/anton
+
+Pointer ink: original bounded WebGL2 stable-fluid implementation. Technique references:
+Pavel Dobryakov / WebGL-Fluid-Simulation (MIT):
+https://github.com/PavelDoGreat/WebGL-Fluid-Simulation
+NVIDIA GPU Gems, chapter 38: Fast Fluid Dynamics Simulation on the GPU.
+No runtime code, GUI, images, analytics or promo content from script.js is shipped.
+
+GSAP: existing runtime, https://gsap.com/standard-license/ . React: MIT.
+Portfolio claims retain their source links. Nomination is not represented as a win.
+
+Exploits archive artwork: exploits-silicon.webp, generated for this project with
+the built-in OpenAI image generation tool on 2026-09-12. Original prompt: macro
+exposed semiconductor die on a matte black circuit board, precision-etched silver
+circuits, cut silicon layers and brushed metal; restrained violet grazing light,
+dark negative space for typography; no writing, logos, people, or interface.
+This is symbolic editorial artwork, not a photograph of the research or a
+technical diagram. Optimized to a single 1536x1024 WebP (approximately 232 KB).
+
+AI-infrastructure category artwork: exploits-ai-layers.webp. Built-in OpenAI
+image generation, 2026-09-12; optimized to 1536x1024 WebP, approximately 122 KB.
+Kernel category reuses exploits-silicon.webp. Both are explicitly editorial art,
+not product photography, software screenshots, or technical diagrams.
+Final generation prompt:
+Use case: stylized-concept. Asset type: wide editorial category artwork for an
+AI-infrastructure security research archive. Create a premium photorealistic studio
+macro render of multiple stacked smoked-glass computation planes mounted in a
+precision-machined dark metal server substrate. Thin violet and selective magenta
+fiber-optic channels physically connect the planes through the dark metal
+structure. Side-on three-quarter view, layers progress diagonally from lower
+middle foreground toward upper right background. Show material depth, fine etched
+traces, reflective silver edges, sophisticated black glass, orderly engineered
+relationships. Strong silhouette with a few larger planes, not a cloud of random
+objects. Near-black background biased violet. Left 40 percent calm dark negative
+space for readable HTML typography. Composition landscape 1536x1024, usable as an
+ultrawide horizontal crop. Restrained violet illumination, no bloom haze, no
+planets, no city, no hooded person, no shield, no padlock, no numbers, no words, no
+interface, no logos. This is clearly symbolic editorial artwork for AI execution
+layers, not a real product or factual technical diagram. Different from a single
+microchip: multiple interconnected long translucent blades and optical pathways
+are the subject.
