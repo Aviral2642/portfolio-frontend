@@ -5,3 +5,5 @@ Scroll derivative: silent 1280x720, optical-flow interpolated 60 fps, all-intra
 H.264. Poster extracted from this replacement clip. Original left untouched.
 Generator and commercial usage terms not supplied; confirm rights before deploy.
 No material from the rejected Times Square clip is included.
+Mobile derivative: silent 960x540, 60 fps, all-intra H.264, yuv420p,
+CRF 26 with fast-start metadata; derived from the same supplied clip.
