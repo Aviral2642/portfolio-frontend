@@ -1,5 +1,14 @@
 export const speaking = [
   {
+    id: 10,
+    title: 'Rejected-Input Programming: Exploiting Parsers That Say No Too Late',
+    conference: 'BSides Las Vegas',
+    year: 2026,
+    location: 'Las Vegas, NV',
+    type: 'talk',
+    featured: true,
+  },
+  {
     id: 1,
     title: 'From Prompt to Pager: Preparing for AI-Native Incidents Now',
     conference: 'RSAC 2026',
@@ -21,7 +30,7 @@ export const speaking = [
     id: 3,
     title: 'Agents Under Siege: Live Attacks from RAG to Tool Calls to Protocols',
     conference: 'CactusCon 14',
-    year: 2025,
+    year: 2026,
     location: 'Mesa, AZ',
     type: 'talk',
     featured: true,
@@ -82,5 +91,5 @@ export const speaking = [
   },
 ];
 
-export const TOTAL_TALKS = '9+';
+export const TOTAL_TALKS = `${speaking.length}+`;
 export const getFeaturedSpeaking = () => speaking.filter(s => s.featured);

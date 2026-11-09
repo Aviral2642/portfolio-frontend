@@ -4,7 +4,7 @@ export const awards = [
     title: 'RSA Security Scholar 2025',
     organization: 'RSA Conference',
     year: 2025,
-    description: 'Selected from 10,000+ applicants for AI x Cybersecurity research. Representing the intersection of AI, cybersecurity, and red teaming at one of the world\'s premier security conferences.',
+    description: 'Selected as an RSA Security Scholar in 2025. Representing the intersection of AI, cybersecurity, and red teaming at one of the world\'s premier security conferences.',
     category: 'academic',
     featured: true,
     icon: '🏅'
@@ -21,10 +21,10 @@ export const awards = [
   },
   {
     id: 3,
-    title: 'HackTheBox PRO HACKER',
+    title: 'Hack The Box — AviralxRoot',
     organization: 'HackTheBox',
     year: 2024,
-    description: 'Global Rank: Top 200 | US Rank: #24',
+    description: 'Current rank and activity are shown on the automatically updated public profile card.',
     category: 'competition',
     featured: true,
     icon: '🎯'

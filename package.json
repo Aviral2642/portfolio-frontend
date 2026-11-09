@@ -17,8 +17,9 @@
     "build": "npm run lint && vite build",
     "build:review": "npm run lint && vite build --mode review",
     "lint": "eslint src/designer src/experience src/data src/App.js src/index.js src/pages/Exploits.js src/styles scripts/*.mjs vite.config.mjs",
-    "test": "vitest run",
+    "test": "vitest run && node --test scripts/sync-exploits.test.cjs",
     "sync-exploits": "node scripts/sync-exploits.js",
+    "sync-exploits:research": "node scripts/sync-exploits.js --research-only",
     "predeploy": "npm test && npm run build",
     "deploy": "gh-pages -d build --nojekyll",
     "postbuild": "node scripts/finalize-build.mjs"
@@ -32,6 +33,10 @@
     "jsdom": "^29.1.1",
     "vite": "^8.3.0",
     "vitest": "^5.0.0"
+  },
+  "overrides": {
+    "eslint": { "minimatch": "^11.0.1" },
+    "@eslint/config-array": { "minimatch": "^11.0.1" }
   },
   "engines": {
     "node": "^22.13.0 || ^24.0.0 || >=26.0.0"

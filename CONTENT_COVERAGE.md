@@ -8,30 +8,30 @@ All original major content categories remain reachable in the new page:
 | Expertise, nine areas | About → Expertise & practice |
 | Six projects | Selected work, all six direct repository links |
 | Experience, three records | About → Experience & education |
-| Speaking, nine original + BSides LV 2026 | Speaking feature/list/expanded appearances |
+| Speaking, ten conference appearances | Speaking feature/list/expanded appearances |
 | Ten research papers | Writing features and publication index |
-| Twelve blog articles | Writing → Research writing |
+| Seventeen blog articles | Writing → Research writing |
 | Education, two records | About → Experience & education |
 | Awards and credentials | Pwnie spread and About → Standards, credentials & recognition |
-| Contact | Final full-scale contact composition and form |
+| Contact | Final contact composition with a direct LinkedIn link |
 | Existing archive | /exploits; linked below selected work |
-| Seven assigned disclosures | Langflow feature and six-row research index |
+| Nine assigned disclosures | Langflow feature and nine-card disclosure gallery |
 | Impact | Langflow evidence with advisory, CISA and Sysdig links |
 | Standards, independent reports, HTB | About and Writing expansions |
 
-Resume is served at /resume.pdf. Its Amazon date/location takes precedence over
-stale source data: Ads Security, Sunnyvale, August 2025–present. CactusCon 14 is
+Resume is served at /resume.pdf. Amazon source data and the rendered career section
+agree on Ads Security, Sunnyvale, August 2025–present. CactusCon 14 is
 shown as 2026. Research cards link to the existing Scholar profile, not invented
-paper PDFs. MITRE submissions remain explicitly in review. No HTB live ranks.
+paper PDFs. MITRE submissions remain explicitly in review. HTB uses the public GitHub card refreshed every six hours; no fixed ranks are maintained here.
 
 Pwnie: **2026 nominee, Best Server-Side / Cloud Bug**. Source is the user's resume
 and public GitHub profile, not a verified official award page. No win/trophy claim.
 Speaking artwork is an editorial poster, not an event photograph.
-# September 6 additions
+# Current content additions
 
 - Dedicated Amazon career spread and Penn State / Amity education imagery.
-- All seven CVE records in an accessible horizontal dossier gallery.
+- All nine CVE records in an accessible horizontal dossier gallery.
 - Distinct Medium and HackerNoon profile spreads, using supplied destinations.
 - HTB profile updated to the owner's supplied profile.hackthebox.com URL.
-- HTB #34 global / #10 USA snapshot: owner-reported September 6, 2026; not live.
+- HTB embeds the existing auto-updated GitHub telemetry card instead of a fixed ranking snapshot.
 - Portrait and AS graphic removed at the owner's request; text identity retained.

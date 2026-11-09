@@ -1,3 +1,13 @@
+# Content freshness update — November 8, 2026
+
+- 22 frontend tests and 3 research-sync regression tests pass. Lint and production build pass.
+- Dependency updates and scoped minimatch overrides for ESLint/config-array resolve the known lockfile advisories; npm audit reports zero vulnerabilities.
+- All 20 existing archive records are unchanged; the Python SDK advisory adds one entry. Every referenced local document/artifact exists. All seven published kernel records and their source files are preserved by research-only synchronization.
+- Chrome desktop and mobile checks passed at 1440, 768, 390 and 320 px without horizontal overflow. Nine disclosure cards, seventeen article links, the HTB image, homepage-to-archive navigation, 21 total / 14 AI / 7 kernel filters, Python document links, and reduced-motion behavior were checked.
+- Disclosure arrow checks wait for fonts and scroll layout to settle. An initial rapid-click probe ran before that layout settled; the settled check reached the last disclosure. The lazy HTB image was verified after loading.
+- Screenshots are under ignored output/playwright/freshness-*.png. Profile disclosure SVG is valid XML with nine distinct CVE identifiers.
+- The résumé is unchanged. Historical project repositories receive documentation changes only; their executable research code was not run or modified.
+
 # LinkedIn-only contact and campus image — September 12, 2026
 
 The owner removed the contact form after the release checks below. Contact now

@@ -1,6 +1,7 @@
 import { blogPosts } from '../data/blog';
 export const langflowArticle = blogPosts.find(post => post.id === 12).url;
 export const disclosures = [
+  { name: 'MCP Python SDK', id: 'CVE-2026-115563', focus: 'OAuth credential issuer binding', score: '7.5', label: 'High · Co-reported', text: 'An untrusted MCP server could redirect an HTTP OAuth client’s credentials to its chosen authorization server. Co-reported research. Fixed in mcp 1.30.0 / 2.2.0; issuer configuration and stored-credential migration also matter.', href: 'https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-qx49-fqc8-xw99' },
   { name: 'MCP TypeScript SDK', id: 'CVE-2026-104850', focus: 'OAuth credential issuer binding', score: '7.5', label: 'High · Co-reported', text: 'An untrusted MCP server could direct an HTTP OAuth client to send existing credentials to an authorization server it controlled. Co-reported with six other researchers.', href: 'https://github.com/advisories/GHSA-6qxp-vccf-f47h' },
   { name: 'Langflow', id: 'CVE-2026-33017', focus: 'AI workflow security', score: '9.3', label: 'Critical · CISA KEV', text: 'Unauthenticated remote code execution in an AI workflow platform. Listed in the CISA Known Exploited Vulnerabilities catalog.', href: langflowArticle },
   { name: 'Flowise', id: 'CVE-2026-69258', focus: 'Execution context integrity', score: '8.8', label: 'High', text: 'Unauthenticated property injection into the flow execution context.', href: 'https://www.cve.org/CVERecord?id=CVE-2026-69258' },

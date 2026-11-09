@@ -1,4 +1,9 @@
 export const blogPosts = [
+  {"id":17,"title":"I Found Two OAuth Security Flaws in the Official MCP SDKs.","url":"https://medium.com/@aviral23/i-found-two-oauth-security-flaws-in-the-official-mcp-sdks-038e377dc992","publication":"Medium","tag":"AI Security"},
+  {"id":16,"title":"Three CVEs in Activepieces: The Sandbox Was Real. The Code Just Didn't Run Inside It.","url":"https://medium.com/@aviral23/three-cves-in-activepieces-the-sandbox-was-real-the-code-just-didnt-run-inside-it-13cc2b4cda85","publication":"Medium","tag":"AI Security"},
+  {"id":15,"title":"CVE-2026-69258: Flowise Patched overrideConfig. I Found the Two Places the Patch Never Reached.","url":"https://medium.com/@aviral23/cve-2026-69258-flowise-patched-overrideconfig-i-found-the-two-places-the-patch-never-reached-cb907387cbbe","publication":"Medium","tag":"AI Security"},
+  {"id":14,"title":"CVE-2026-53923: How a 32-Bit Integer in vLLM Leaks One User’s GPU Memory Into Another’s","url":"https://medium.com/@aviral23/cve-2026-53923-how-a-32-bit-integer-in-vllm-leaks-one-users-gpu-memory-into-another-s-7f726bf5bb23","publication":"Medium","tag":"AI Security"},
+  {"id":13,"title":"I Found 5 Security Vulnerabilities in XGBoost. Here’s What Happened.","url":"https://medium.com/@aviral23/i-found-5-security-vulnerabilities-in-xgboost-heres-what-happened-189327f97fbf","publication":"Medium","tag":"AI Security"},
   {
     id: 1,
     title: 'AdversaryPilot + Garak: How to Turn LLM Scan Results into a Next-Step Attack Strategy',

@@ -15,7 +15,7 @@ export const research = [
     id: 2,
     title: 'R₀ for Agentic Tool-Networks: Spectral Thresholds and Intervention Levers in LLM-Agent Systems',
     venue: 'AAAI 2026 Workshop FAST',
-    year: 2025,
+    year: 2026,
     authors: ['Aviral Srivastava', 'Sourav Panda', 'Kushagra Srivastva'],
     description: 'Modeling propagation dynamics in LLM-agent tool networks using epidemiological R₀ concepts.',
     abstract: 'Applies spectral graph theory to analyze and control information propagation thresholds in agentic LLM systems.',
