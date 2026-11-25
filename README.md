@@ -1,6 +1,21 @@
-# Aviral Srivastava — designer portfolio
+# Aviral Srivastava: portfolio
 
 Local preview: **http://127.0.0.1:4174/**
+
+## Studio redesign (branch `redesign/studio`, November 2026, local only)
+
+The homepage and the per-finding case pages live in `src/studio/`:
+
+- `Shell.js`: navigation, custom cursor, loader, page curtain, smooth scroll (Lenis driven by the GSAP ticker).
+- `Surface.js`: the WebGL2 hero. A liquid sheet over a circuit layer; the pointer parts it. Takes an accent colour and seed, so each case page reuses it in its own colour.
+- `Home.js`, `home.css`: homepage sections.
+- `CvePage.js`, `cve.css`: one layout for every finding at `/cve/<CVE-ID>`: hero and status badges, plain-terms summary, scroll-driven attack path, timeline, coverage, evidence, pattern, next case.
+- `data/findings.js`: the nine case files. Every date, score, version and article was read from the linked public source. Add a finding here and its page, homepage row and static build entry follow. `findings.test.js` checks ids, link shape, date order and path structure.
+- `studio.css`: design tokens (colour, type, spacing, easing) and shared primitives. Raw values belong here.
+
+The earlier designer homepage stays in `src/designer/` and is reachable at `/preview/legacy` in development. `/exploits` is unchanged. `scripts/finalize-build.mjs` now also writes a static `build/cve/<CVE-ID>/index.html` per finding with its own title and description.
+
+## Earlier designer build notes
 
 The homepage is the new graphic-led designer portfolio. The observatory, city and
 floating-sculpture experiences have been removed and recoverably archived.

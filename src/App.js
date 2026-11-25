@@ -1,10 +1,16 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import GlobalStyles from './styles/GlobalStyles';
-import Portfolio from './designer/DesignerPortfolio';
+import Shell from './studio/Shell';
+import Home from './studio/Home';
+import {preloadCase} from './studio/caseRoute';
 import {preloadArchive} from './designer/archiveRoute';
 
 const ExploitsPage = lazy(preloadArchive);
+// Case pages load on demand. The shell holds its own Suspense boundary, so it stays mounted while they do.
+const CvePage = lazy(preloadCase);
+// The older pages keep their styled-components base styles; the studio pages do not load that library.
+const LegacyChrome = lazy(() => import('./styles/LegacyChrome'));
+const LegacyPortfolio = lazy(() => import('./designer/DesignerPortfolio'));
 const enableExperiments = import.meta.env.DEV || import.meta.env.MODE === 'review';
 const MicroscopePreview = enableExperiments ? lazy(() => import('./designer/microscope/Microscope')) : null;
 
@@ -34,14 +40,19 @@ function App() {
     // must not be deferred inside React Router's separate startTransition.
     <Router useTransitions={false}>
       <RouteMetadata/>
-      <GlobalStyles />
       <Suspense fallback={<main className="route-loading" role="status">Opening the page…</main>}>
         <Routes>
-          <Route path="/" element={<Portfolio />} />
-          <Route path="/exploits" element={<ExploitsPage />} />
-          {enableExperiments && <Route path="/preview/microscope" element={<MicroscopePreview />} />}
-          <Route path="/research" element={<Navigate to="/#research" replace />} />
-          <Route path="*" element={<main className="route-loading"><h1>Outside the known map.</h1><a href="/">Return to the portfolio</a></main>} />
+          <Route element={<Shell />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/cve/:id" element={<CvePage />} />
+          </Route>
+          <Route element={<LegacyChrome />}>
+            {enableExperiments && <Route path="/preview/legacy" element={<LegacyPortfolio />} />}
+            <Route path="/exploits" element={<ExploitsPage />} />
+            {enableExperiments && <Route path="/preview/microscope" element={<MicroscopePreview />} />}
+            <Route path="/research" element={<Navigate to="/#research" replace />} />
+            <Route path="*" element={<main className="route-loading"><h1>Outside the known map.</h1><a href="/">Return to the portfolio</a></main>} />
+          </Route>
         </Routes>
       </Suspense>
     </Router>

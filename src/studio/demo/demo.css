@@ -1,0 +1,80 @@
+/* Demonstration stage. Sizes inside the stage use cqw so a scene scales as one drawing. */
+.dm { position: relative; }
+.dm-pin { display: none; }
+.dm.is-live .dm-pin { display: flex; flex-direction: column; gap: clamp(.9rem, 2vh, 1.6rem); padding-block: clamp(1rem, 3vw, 2.5rem) clamp(2.5rem, 6vw, 5rem); }
+.dm-head { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+.dm-acts { list-style: none; display: flex; gap: clamp(.8rem, 1.6vw, 1.8rem); margin: 0; padding: 0; font-family: var(--f-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.dm-acts li { transition: color .3s; white-space: nowrap; }
+.dm-acts button { display: flex; gap: .6em; align-items: center; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; padding: .2em 0; }
+.dm-acts button:hover { color: var(--ink); }
+.dm-acts .dm-toggle { padding: .45em 1em; border: 1px solid var(--line-2); border-radius: 99px; color: var(--ink); min-width: 5.2em; justify-content: center; }
+.dm-acts .dm-toggle:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.dm-acts span { display: inline-grid; place-items: center; width: 1.9em; height: 1.9em; border: 1px solid var(--line-2); border-radius: 50%; transition: background .3s, color .3s, border-color .3s; }
+.dm-acts .is-done { color: var(--ink-2); }
+.dm-acts .is-done span { border-color: var(--accent-line); color: var(--accent); }
+.dm-acts .is-on { color: var(--ink); }
+.dm-acts .is-on span { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+@media (max-width: 1250px) { .dm-acts li:not(.is-on) button:not(.dm-toggle) { font-size: 0; gap: 0; } .dm-acts li:not(.is-on) span { font-size: .66rem; } }
+
+.dm-stage { position: relative; width: min(100%, 150svh); aspect-ratio: 100 / 50; margin-inline: auto; container-type: inline-size; overflow: hidden; border: 1px solid var(--line-2); background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 5cqw 5cqw,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 5cqw 5cqw,
+    radial-gradient(80% 90% at 50% 40%, color-mix(in srgb, var(--accent) 9%, var(--bg)) 0%, var(--bg) 75%); }
+.dm-stage::before, .dm-stage::after { content: ''; position: absolute; width: 1.6cqw; height: 1.6cqw; border: 2px solid var(--accent); z-index: 3; }
+.dm-stage::before { left: -1px; top: -1px; border-right: 0; border-bottom: 0; }
+.dm-stage::after { right: -1px; bottom: -1px; border-left: 0; border-top: 0; }
+
+.dm-foot { display: grid; gap: 1rem; }
+.dm-caption { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(1rem, 2vw, 2rem); align-items: baseline; min-height: 4.2rem; animation: dm-cap .5s var(--ease) both; }
+.dm-num { font-family: var(--f-display); font-size: clamp(2.2rem, 3.6vw, 3.6rem); line-height: .8; color: var(--accent); }
+.dm-caption p { margin: 0; font-size: clamp(1.1rem, 1.75vw, 1.7rem); line-height: 1.25; letter-spacing: -.02em; max-width: 46ch; }
+@keyframes dm-cap { from { opacity: 0; transform: translateY(12px); } }
+.dm-progress { height: 2px; background: var(--line); }
+.dm-progress i { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; box-shadow: 0 0 12px var(--accent); }
+
+/* scene primitives */
+.dm-stage * { box-sizing: border-box; }
+.dm-card { position: absolute; padding: 1cqw 1.2cqw 1.1cqw; background: color-mix(in srgb, var(--bg) 90%, transparent); border: 1px solid var(--line-2); }
+.dm-card > h5 { margin: 0 0 .7cqw; font-family: var(--f-mono); font-weight: 400; font-size: .86cqw; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.dm-stage .dm-l { display: block; font-family: var(--f-mono); font-size: 1.1cqw; line-height: 1.75; white-space: nowrap; color: var(--ink-2); }
+.dm-stage .dm-l b { font-weight: 500; color: var(--ink); }
+.dm-stage .dm-l i, .dm-stage .dm-hot { font-style: normal; color: var(--accent); }
+.dm-l s { text-decoration-color: var(--accent); }
+.dm-chip { position: absolute; padding: .4cqw .9cqw; font-family: var(--f-mono); font-size: .95cqw; letter-spacing: .04em; white-space: nowrap; color: var(--ink); background: var(--bg); border: 1px solid var(--line-2); border-radius: 99px; }
+.dm-chip.is-hot { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); box-shadow: 0 0 2.4cqw -.4cqw var(--accent); }
+.dm-chip.is-line { color: var(--accent); border-color: var(--accent); }
+.dm-note { position: absolute; font-family: var(--f-mono); font-size: .86cqw; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.dm-note.is-hot { color: var(--accent); }
+.dm-big { position: absolute; font-family: var(--f-display); text-transform: uppercase; line-height: .9; color: var(--ink); white-space: nowrap; }
+.dm-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.dm-wires path, .dm-wires line, .dm-wires rect, .dm-wires circle { fill: none; vector-effect: non-scaling-stroke; }
+/* drawn wires keep viewBox units so pathLength dashes work (the stage and viewBox share one aspect) */
+.dm-wires .dm-w { vector-effect: none; stroke: var(--accent); stroke-width: .2; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 .5px var(--accent)); }
+.dm-wires .dm-w.is-cold { stroke: var(--ink-3); filter: none; stroke-width: .14; }
+.dm-wall { stroke: var(--ink-2); stroke-width: 1.4; stroke-dasharray: 5 7; }
+.dm-box { position: absolute; border: 1px dashed var(--line-2); }
+.dm-box > h5 { position: absolute; left: .9cqw; top: -.62cqw; margin: 0; padding: 0 .6cqw; background: var(--bg); font-family: var(--f-mono); font-weight: 400; font-size: .86cqw; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.dm-box.is-solid { border-style: solid; border-color: var(--accent); }
+.dm-box.is-solid > h5 { color: var(--accent); }
+.dm-dot { position: absolute; width: 1.5cqw; height: 1.5cqw; margin: -.75cqw 0 0 -.75cqw; border-radius: 50%; background: var(--accent); box-shadow: 0 0 2cqw var(--accent); }
+.dm-bubble { position: absolute; padding: .8cqw 1.1cqw; font-size: 1.12cqw; line-height: 1.4; border-radius: 1.2cqw 1.2cqw 1.2cqw .2cqw; background: color-mix(in srgb, var(--ink) 9%, var(--bg)); border: 1px solid var(--line-2); max-width: 30cqw; }
+.dm-bubble.is-them { border-radius: 1.2cqw 1.2cqw .2cqw 1.2cqw; background: color-mix(in srgb, var(--accent) 16%, var(--bg)); border-color: var(--accent-line); }
+.dm-cells { position: absolute; display: grid; gap: .22cqw; }
+.dm-cells i { aspect-ratio: 1; background: color-mix(in srgb, var(--ink) 10%, transparent); }
+.dm-browser { position: absolute; border: 1px solid var(--line-2); background: color-mix(in srgb, var(--bg) 92%, transparent); }
+.dm-url { display: flex; align-items: center; gap: .8cqw; padding: .7cqw 1cqw; border-bottom: 1px solid var(--line-2); font-family: var(--f-mono); font-size: 1.02cqw; color: var(--ink-2); white-space: nowrap; overflow: hidden; }
+.dm-url::before { content: ''; flex: none; width: 2.6cqw; height: .7cqw; background: radial-gradient(circle at .35cqw 50%, var(--ink-3) .3cqw, transparent .32cqw), radial-gradient(circle at 1.3cqw 50%, var(--ink-3) .3cqw, transparent .32cqw), radial-gradient(circle at 2.25cqw 50%, var(--ink-3) .3cqw, transparent .32cqw); }
+.dm-pointer { position: absolute; width: 1.8cqw; height: 1.8cqw; z-index: 4; }
+.dm-pointer path { fill: var(--ink); stroke: var(--bg); stroke-width: 1; }
+
+/* life on the stage: a slow scan, packets on live wires, a pulse on whatever is lit, a flash at the breach */
+.dm-scene { position: absolute; inset: 0; }
+.dm-scan { position: absolute; left: 0; right: 0; top: 0; height: 22%; pointer-events: none; z-index: 2; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--accent) 9%, transparent) 85%, color-mix(in srgb, var(--accent) 40%, transparent) 100%); mix-blend-mode: screen; animation: dm-scan 5.5s linear infinite; }
+@keyframes dm-scan { from { transform: translateY(-100%); } to { transform: translateY(460%); } }
+.dm-flash { position: absolute; inset: 0; pointer-events: none; z-index: 5; opacity: 0; background: radial-gradient(70% 70% at 50% 50%, var(--accent), transparent 80%); mix-blend-mode: screen; }
+.dm-packet { fill: #fff; filter: drop-shadow(0 0 1px var(--accent)) drop-shadow(0 0 2.5px var(--accent)); opacity: 0; transition: opacity .25s; }
+.dm-chip.is-hot { animation: dm-pulse 1.4s var(--ease-io) infinite alternate; }
+@keyframes dm-pulse { to { box-shadow: 0 0 4cqw 0 var(--accent); } }
+.dm-stage .dm-l i { text-shadow: 0 0 1.2cqw color-mix(in srgb, var(--accent) 70%, transparent); }
+
+.dm.is-idle .dm-stage *, .dm.is-idle .dm-stage { animation-play-state: paused !important; }

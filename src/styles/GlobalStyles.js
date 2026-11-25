@@ -1,17 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  @font-face {font-family:'Anton';src:url('/fonts/anton-regular.ttf') format('truetype');font-display:swap;font-weight:400;}
+  @font-face {font-family:'Anton';src:url('/fonts/anton-regular.woff2') format('woff2'),url('/fonts/anton-regular.ttf') format('truetype');font-display:swap;font-weight:400;}
   @font-face {
     font-family: 'Manrope';
-    src: url('/fonts/manrope-variable.ttf') format('truetype');
+    src: url('/fonts/manrope-variable.woff2') format('woff2'), url('/fonts/manrope-variable.ttf') format('truetype');
     font-weight: 200 800;
     font-style: normal;
     font-display: swap;
   }
   @font-face {
     font-family: 'JetBrains Mono';
-    src: url('/fonts/jetbrains-mono-variable.ttf') format('truetype');
+    src: url('/fonts/jetbrains-mono-variable.woff2') format('woff2'), url('/fonts/jetbrains-mono-variable.ttf') format('truetype');
     font-weight: 100 800;
     font-style: normal;
     font-display: swap;
