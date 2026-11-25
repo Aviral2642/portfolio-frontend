@@ -5,6 +5,7 @@ import {Arrow, Ext, Go} from './Shell';
 import Surface from './Surface';
 import Glyph from './Glyph';
 import {preloadCase} from './caseRoute';
+import {HOME_TITLE} from './data/caseMeta';
 import {findingIndex as findings, themeOf} from './data/findingIndex';
 import {projects} from '../data/projects';
 import {speaking} from '../data/speaking';
@@ -104,7 +105,7 @@ function Flagship() {
     return () => ctx.revert();
   }, []);
   return <section className="flag st-pad" ref={root} style={{'--accent': theme.accent}} aria-labelledby="flag-title">
-    <Go to={`/cve/${flagship.id}`} className="flag-panel" cursor="Open case">
+    <Go to={`/cve/${flagship.id}/`} className="flag-panel" cursor="Open case">
       <svg className="flag-trace" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
         <line x1="640" y1="0" x2="640" y2="600" className="flag-boundary"/>
         <path d="M0 420 C 240 420 300 180 520 180 L 640 180 C 820 180 860 360 1200 300" pathLength="1"/>
@@ -149,7 +150,7 @@ function Findings() {
     </div>
     <ol className="find-list" ref={list} onPointerLeave={() => setActive(null)}>
       {findings.map((f, i) => <li key={f.id} style={{'--accent': themeOf(f).accent}} data-fade>
-        <Go to={`/cve/${f.id}`} className={`find-row st-pad${active === i ? ' is-active' : ''}`} onPointerEnter={() => setActive(i)} onFocus={() => setActive(i)} onBlur={() => setActive(null)}>
+        <Go to={`/cve/${f.id}/`} className={`find-row st-pad${active === i ? ' is-active' : ''}`} onPointerEnter={() => setActive(i)} onFocus={() => setActive(i)} onBlur={() => setActive(null)}>
           <span className="find-n st-meta">{String(i + 1).padStart(2, '0')}</span>
           <span className="find-product st-display">{f.product}</span>
           <span className="find-what"><span>{f.title}</span><small className="st-meta">{f.id}{f.flags.length ? ` · ${f.flags.join(' · ')}` : ''}</small></span>
@@ -218,7 +219,7 @@ function Archive() {
     return () => ctx.revert();
   }, []);
   return <section className="arc" ref={root} aria-labelledby="arc-title">
-    <Go to="/exploits" className="arc-link" cursor="Enter">
+    <Go to="/exploits/" className="arc-link" cursor="Enter">
       <div className="arc-media"><img src="/editorial/exploits-silicon.webp" alt="" width="1536" height="1024" loading="lazy"/></div>
       <div className="arc-content st-pad">
         <p className="st-meta" data-index="02"><b>Research archive</b>{count ? ` · ${count} analyses` : ''}</p>
@@ -429,7 +430,7 @@ export default function Home() {
   const {ready} = useOutletContext();
   usePageMotion(root, [ready], ready);
   useEffect(() => {
-    document.title = 'Aviral Srivastava · Security engineer and researcher';
+    document.title = HOME_TITLE;
     const idle = window.requestIdleCallback || (fn => setTimeout(fn, 2500));
     idle(() => preloadCase().catch(() => {}));
     const refresh = () => ScrollTrigger.refresh();

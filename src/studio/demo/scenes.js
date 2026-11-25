@@ -1,5 +1,6 @@
 // One demonstration per finding. A scene is a small drawing (Stage) and a
-// timeline (build) written in acts: act n owns time n..n+1. Payload strings
+// timeline (build) written in acts: act n owns time n..n+1. `focus` is where
+// the phone camera looks during each act, as a percentage across the drawing. Payload strings
 // are simplified illustrations of the mechanism each advisory describes.
 
 const P = (l, t, w, h) => ({left: `${l}%`, top: `${t}%`, ...(w != null && {width: `${w}%`}), ...(h != null && {height: `${h}%`})});
@@ -18,6 +19,7 @@ const go = (tl, q, sel, t, vars, d = .55) => tl.to(q(sel), {...vars, duration: d
 const swap = (tl, q, scope, t) => { tl.to(q(`${scope} .sw-a`), {autoAlpha: 0, duration: .2}, t); tl.fromTo(q(`${scope} .sw-b`), {autoAlpha: 0}, {autoAlpha: 1, duration: .25}, t + .12); };
 
 const langflow = {
+  focus: [18.5, 34, 50, 81.5, 81.5],
   impact: 3.8,
   acts: [
     {label: 'Request', text: 'One HTTP request to the public build endpoint. No credentials, and a data field carrying a flow of the caller’s own.'},
@@ -71,6 +73,7 @@ const langflow = {
 };
 
 const mcpPython = {
+  focus: [18.5, 50, 22, 81.5, 35],
   impact: 3.75,
   acts: [
     {label: 'Credentials', text: 'The client holds credentials that one authorization server issued.'},
@@ -116,6 +119,7 @@ const mcpPython = {
 };
 
 const mcpTypescript = {
+  focus: [18.5, 54, 50, 81.5, 18.5],
   impact: 3.8,
   acts: [
     {label: 'Saved', text: 'Credentials from an earlier sign-in sit in the client’s store, with no record of who issued them.'},
@@ -151,6 +155,7 @@ const mcpTypescript = {
 };
 
 const flowise = {
+  focus: [18.5, 50, 50, 81.5, 81.5],
   impact: 2.8,
   acts: [
     {label: 'Request', text: 'A request to the public prediction API, with an overrideConfig object the caller filled in.'},
@@ -196,6 +201,7 @@ const flowise = {
 };
 
 const apCommand = {
+  focus: [18.5, 18.5, 56, 60, 22],
   impact: 3.85,
   acts: [
     {label: 'A name', text: 'A user who can edit a flow gives a code step a name. The name contains shell syntax.'},
@@ -233,6 +239,7 @@ const apCommand = {
 };
 
 const apIsolate = {
+  focus: [18.5, 18.5, 50, 79, 80],
   impact: 2.6,
   acts: [
     {label: 'A module', text: 'A code step compiles to a module. This one has code at the top level and an exported function.'},
@@ -275,6 +282,7 @@ const apIsolate = {
 };
 
 const apXss = {
+  focus: [26, 26, 30, 78, 81.5],
   impact: 3.8,
   acts: [
     {label: 'A link', text: 'The attacker builds a link to the OAuth callback page, with script in the code parameter.'},
@@ -315,6 +323,7 @@ const apXss = {
 
 const CELLS = 192, WRITTEN = 96;
 const vllm = {
+  focus: [30, 30, 81.5, 30, 62],
   impact: 4.1,
   acts: [
     {label: 'Leftovers', text: 'GPU memory is reused between requests. Another tenant’s tensor data is still sitting in it.'},
@@ -354,6 +363,7 @@ const vllm = {
 };
 
 const anythingllm = {
+  focus: [18.5, 18.5, 50, 56, 81.5],
   impact: 4.55,
   acts: [
     {label: 'A message', text: 'A workspace user asks the agent for a table’s schema. The table name is not a table name.'},
@@ -393,6 +403,7 @@ const anythingllm = {
 };
 
 const php = {
+  focus: [18.5, 46, 79, 79, 62],
   impact: 3.35,
   acts: [
     {label: 'One request', text: 'One HTTP request. Its multipart body is malformed on purpose, and a FastCGI message is tucked in right after the point where PHP will stop parsing.'},

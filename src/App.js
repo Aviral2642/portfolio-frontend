@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import Shell from './studio/Shell';
 import Home from './studio/Home';
 import {preloadCase} from './studio/caseRoute';
+import {HOME_DESCRIPTION, HOME_TITLE} from './studio/data/caseMeta';
 import {preloadArchive} from './designer/archiveRoute';
 
 const ExploitsPage = lazy(preloadArchive);
@@ -17,19 +18,18 @@ const MicroscopePreview = enableExperiments ? lazy(() => import('./designer/micr
 function RouteMetadata() {
   const {pathname} = useLocation();
   useEffect(() => {
+    if (pathname.startsWith('/cve/')) return; // the case page sets its own
     const archive = /^\/exploits\/?$/.test(pathname);
     const microscope = enableExperiments && pathname === '/preview/microscope';
-    const title = microscope ? 'Under the microscope — local preview' : archive ? 'Exploits & Analysis — Aviral Srivastava' : 'Aviral Srivastava - Security Researcher';
+    const title = microscope ? 'Under the microscope · local preview' : archive ? 'Exploits and Analysis: Kernel and AI Infrastructure Research | Aviral Srivastava' : HOME_TITLE;
     const url = `https://www.aviralsrivastava.tech/${archive ? 'exploits/' : ''}`;
-    const description = archive ? 'Independent security research archive. Kernel and AI infrastructure research, analysis, and disclosure references by Aviral Srivastava.' : 'Aviral Srivastava — security engineer and researcher. Explore systems security, binary and malware analysis, AI infrastructure research, talks, and selected work.';
+    const description = archive ? 'Research archive by Aviral Srivastava: Linux kernel n-day analysis and AI infrastructure vulnerability research, with root cause, reproduction and detection notes.' : HOME_DESCRIPTION;
     document.title = title;
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
-    for (const type of ['og', 'twitter']) {
-      document.querySelector(`meta[property="${type}:title"]`)?.setAttribute('content', title);
-      document.querySelector(`meta[property="${type}:url"]`)?.setAttribute('content', url);
-      document.querySelector(`meta[property="${type}:description"]`)?.setAttribute('content', description);
-    }
-    document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+    const set = (selector, value) => document.querySelector(selector)?.setAttribute('content', value);
+    set('meta[property="og:title"]', title); set('meta[property="og:url"]', url); set('meta[property="og:description"]', description);
+    set('meta[name="twitter:title"]', title); set('meta[name="twitter:description"]', description);
+    set('meta[name="description"]', description);
   }, [pathname]);
   return null;
 }
@@ -50,7 +50,7 @@ function App() {
             {enableExperiments && <Route path="/preview/legacy" element={<LegacyPortfolio />} />}
             <Route path="/exploits" element={<ExploitsPage />} />
             {enableExperiments && <Route path="/preview/microscope" element={<MicroscopePreview />} />}
-            <Route path="/research" element={<Navigate to="/#research" replace />} />
+            <Route path="/research" element={<Navigate to="/#findings" replace />} />
             <Route path="*" element={<main className="route-loading"><h1>Outside the known map.</h1><a href="/">Return to the portfolio</a></main>} />
           </Route>
         </Routes>

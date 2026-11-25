@@ -6,6 +6,7 @@ import Surface from './Surface';
 import Glyph from './Glyph';
 import Demo from './demo/Demo';
 import {findings, findingById, themeOf} from './data/findings';
+import {caseDescription, caseTitle, caseUrl} from './data/caseMeta';
 import './cve.css';
 
 const fmt = date => {
@@ -114,13 +115,13 @@ function View({finding, index}) {
     return () => shell.style.removeProperty('--accent');
   }, [theme.accent]);
   useEffect(() => {
-    const title = `${f.id}: ${f.title} in ${f.product} · Aviral Srivastava`;
+    const title = caseTitle(f), description = caseDescription(f), url = caseUrl(f);
     document.title = title;
     const set = (selector, value) => document.querySelector(selector)?.setAttribute('content', value);
-    const url = `https://www.aviralsrivastava.tech/cve/${f.id}/`;
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
-    set('meta[name="description"]', f.line);
-    for (const kind of ['og', 'twitter']) { set(`meta[property="${kind}:title"]`, title); set(`meta[property="${kind}:description"]`, f.line); set(`meta[property="${kind}:url"]`, url); }
+    set('meta[name="description"]', description);
+    set('meta[property="og:title"]', title); set('meta[property="og:description"]', description); set('meta[property="og:url"]', url);
+    set('meta[name="twitter:title"]', title); set('meta[name="twitter:description"]', description);
   }, [f]);
 
   const sections = useMemo(() => [

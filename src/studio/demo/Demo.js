@@ -4,8 +4,8 @@ import scenes from './scenes';
 import './demo.css';
 
 // A stage whose timeline plays by itself while it is on screen. Each scene is
-// written in "acts": act n owns timeline time n..n+1 and one caption. Below 900px, or
-// with reduced motion, the stage is not shown and the written steps carry it.
+// written in "acts": act n owns timeline time n..n+1 and one caption. On phones a
+// camera follows the action. With reduced motion the written steps carry it.
 export default function Demo({finding, accent}) {
   const scene = scenes[finding.id];
   const root = useRef(null), stage = useRef(null), bar = useRef(null), player = useRef(null), held = useRef(false);
@@ -16,8 +16,11 @@ export default function Demo({finding, accent}) {
   useEffect(() => {
     if (!scene) return undefined;
     const mm = gsap.matchMedia();
-    mm.add('(min-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
+    mm.add({motion: '(prefers-reduced-motion: no-preference)', narrow: '(max-width: 899px)'}, context => {
+      if (!context.conditions.motion) return undefined;
+      const narrow = context.conditions.narrow;
       const el = root.current;
+      el.classList.toggle('is-narrow', narrow);
       el.classList.add('is-live');
       const ctx = gsap.context(() => {
         const tl = gsap.timeline({paused: true, defaults: {ease: 'power2.out', duration: .4}});
@@ -28,6 +31,15 @@ export default function Demo({finding, accent}) {
           tl.fromTo(stage.current.querySelector('.dm-flash'), {opacity: 0}, {opacity: .5, duration: .06, ease: 'none'}, scene.impact)
             .to(stage.current.querySelector('.dm-flash'), {opacity: 0, duration: .3}, scene.impact + .06)
             .fromTo(stage.current.querySelector('.dm-scene'), {x: 0}, {x: 7, duration: .04, repeat: 5, yoyo: true, ease: 'none'}, scene.impact);
+        }
+        // On a phone the drawing is 2.7x wider than the window. A camera pans to
+        // where each act happens, then pulls back to show the whole picture.
+        if (narrow) {
+          const view = stage.current.querySelector('.dm-scene');
+          const at = i => -(Math.min(81.5, Math.max(18.5, scene.focus?.[i] ?? 50)) - 18.5);
+          tl.set(view, {xPercent: at(0), scale: 1, transformOrigin: '0% 50%'}, 0);
+          for (let i = 1; i < total; i++) tl.to(view, {xPercent: at(i), duration: .34, ease: 'power2.inOut'}, i - .14);
+          tl.to(view, {xPercent: 0, scale: 1 / 2.7, duration: .14, ease: 'power2.inOut'}, total - .14);
         }
         // A packet runs along every live wire for as long as that wire is drawn.
         const wires = [...stage.current.querySelectorAll('.dm-w:not(.is-cold)')];
@@ -68,7 +80,7 @@ export default function Demo({finding, accent}) {
           },
         });
       }, el);
-      return () => { player.current = null; ctx.revert(); el.classList.remove('is-live'); el.querySelectorAll('.dm-packet').forEach(node => node.remove()); };
+      return () => { player.current = null; ctx.revert(); el.classList.remove('is-live', 'is-narrow'); el.querySelectorAll('.dm-packet').forEach(node => node.remove()); };
     });
     return () => mm.revert();
   }, [scene, accent, total]);

@@ -68,7 +68,7 @@
 .dm-pointer path { fill: var(--ink); stroke: var(--bg); stroke-width: 1; }
 
 /* life on the stage: a slow scan, packets on live wires, a pulse on whatever is lit, a flash at the breach */
-.dm-scene { position: absolute; inset: 0; }
+.dm-scene { position: absolute; inset: 0; container-type: inline-size; }
 .dm-scan { position: absolute; left: 0; right: 0; top: 0; height: 22%; pointer-events: none; z-index: 2; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--accent) 9%, transparent) 85%, color-mix(in srgb, var(--accent) 40%, transparent) 100%); mix-blend-mode: screen; animation: dm-scan 5.5s linear infinite; }
 @keyframes dm-scan { from { transform: translateY(-100%); } to { transform: translateY(460%); } }
 .dm-flash { position: absolute; inset: 0; pointer-events: none; z-index: 5; opacity: 0; background: radial-gradient(70% 70% at 50% 50%, var(--accent), transparent 80%); mix-blend-mode: screen; }
@@ -78,3 +78,12 @@
 .dm-stage .dm-l i { text-shadow: 0 0 1.2cqw color-mix(in srgb, var(--accent) 70%, transparent); }
 
 .dm.is-idle .dm-stage *, .dm.is-idle .dm-stage { animation-play-state: paused !important; }
+
+/* phones: a portrait window onto the same drawing, 2.7x wider than the window */
+.dm.is-narrow .dm-stage { width: 100%; aspect-ratio: 100 / 135; }
+.dm.is-narrow .dm-scene { inset: auto; left: 0; top: 0; width: 270%; height: 100%; will-change: transform; }
+.dm.is-narrow .dm-head { flex-direction: column; align-items: flex-start; gap: .9rem; }
+.dm.is-narrow .dm-acts { width: 100%; justify-content: space-between; gap: .4rem; }
+.dm.is-narrow .dm-caption { min-height: 6.2rem; }
+.dm.is-narrow .dm-caption p { font-size: 1.05rem; }
+.dm.is-narrow .dm-num { font-size: 2rem; }

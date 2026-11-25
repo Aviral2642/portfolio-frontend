@@ -224,4 +224,9 @@
 .cv-steps { padding-bottom: clamp(2rem, 5vw, 4rem); }
 .cv-card { background: color-mix(in srgb, var(--bg) 60%, transparent); }
 
-@media (max-width: 899px), (prefers-reduced-motion: reduce) { .cv-tech .st-head-side { display: none; } }
+@media (prefers-reduced-motion: reduce) { .cv-tech .st-head-side { display: none; } }
+/* on phones the written steps stay visible under the animation */
+.dm.is-live.is-narrow + .cv-steps { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+
+/* phones: the text sits on top of the field, so the field is dimmed more */
+@media (max-width: 1000px) { .cv-hero-bg::after { background: color-mix(in srgb, var(--bg) 68%, transparent); } }

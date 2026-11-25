@@ -68,7 +68,7 @@ function Cursor() {
 
 const links = [
   ['/#findings', 'Findings', '01'],
-  ['/exploits', 'Archive', '02'],
+  ['/exploits/', 'Archive', '02'],
   ['/#recognition', 'Recognition', '03'],
   ['/#experience', 'Experience', '04'],
   ['/#education', 'Education', '05'],
@@ -168,7 +168,7 @@ export default function Shell() {
   const travel = useCallback(to => {
     const [path, hash] = to.split('#');
     const target = hash ? `#${hash}` : '';
-    if (path === window.location.pathname || path === '') {
+    if (path.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '') || path === '') {
       if (target) scrollTo(target); else scrollTo(0);
       return;
     }
